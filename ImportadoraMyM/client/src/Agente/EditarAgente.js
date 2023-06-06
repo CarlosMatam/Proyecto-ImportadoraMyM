@@ -76,7 +76,7 @@ const EditarAgente = () => {
                 </div>
 
                 <div className='mb-3'>
-                    <label className='form-label'>ID DIRECCION</label>
+                    <label className='form-label'>ID Dirección</label>
                     <textarea
                         value={ID_DIRECCION}
                         onChange={(e) => setId_direccion(e.target.value)}
@@ -86,7 +86,7 @@ const EditarAgente = () => {
                 </div>
 
                 <div className='mb-3'>
-                    <label className='form-label'>id telefono</label>
+                    <label className='form-label'>ID Teléfono</label>
                     <textarea
                         value={ID_TELEFONO}
                         onChange={(e) => setId_telefono(e.target.value)}
@@ -96,7 +96,7 @@ const EditarAgente = () => {
                 </div>
 
                 <div className='mb-3'>
-                    <label className='form-label'>comision_por_venta</label>
+                    <label className='form-label'>Comisión por venta</label>
                     <textarea
                         value={COMISION_POR_VENTA}
                         onChange={(e) => setComision_por_venta(e.target.value)}
@@ -106,7 +106,7 @@ const EditarAgente = () => {
                 </div>
 
                 <div className='mb-3'>
-                    <label className='form-label'>id_zona</label>
+                    <label className='form-label'>ID Zona</label>
                     <textarea
                         value={ID_ZONA}
                         onChange={(e) => setId_zona(e.target.value)}

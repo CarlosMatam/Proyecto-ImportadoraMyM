@@ -1,5 +1,5 @@
 //importamos el Modelo
-import { Agente_ventaSModel, Direccion_agenteSModel, Telefono_agenteSModel, ZonaSModel } from '../models/indexDB.js';
+import { Agente_ventaSModel, Direccion_agenteSModel, Telefono_agenteSModel, ZonaSModel } from '../models/Relaciones_agente_ventas.js';
 
 //** Métodos para el CRUD **/
 

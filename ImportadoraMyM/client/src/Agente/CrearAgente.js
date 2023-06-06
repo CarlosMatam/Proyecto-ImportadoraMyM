@@ -46,7 +46,7 @@ const CrearAgente = () => {
                     required/>
                 </div>
             <div className="col-12">
-                <label className="form-label">Segudno Apellido</label>
+                <label className="form-label">Segundo Apellido</label>
                     <input
                         value={APELLIDO_MATERNO}
                         onChange={(e) => setApellido_materno(e.target.value)}
@@ -56,7 +56,7 @@ const CrearAgente = () => {
                     
                 </div>
             <div className="col-12">
-                <label className="form-label">ID Direccion</label>
+                <label className="form-label">ID Dirección</label>
                     <input
                         value={ID_DIRECCION}
                         onChange={(e) => setId_direccion(e.target.value)}
@@ -66,7 +66,7 @@ const CrearAgente = () => {
                     
                 </div>
             <div className="col-md-6">
-                <label className="form-label">ID Telefono</label>
+                <label className="form-label">ID Teléfono</label>
                     <input
                         value={ID_TELEFONO}
                         onChange={(e) => setId_telefono(e.target.value)}
@@ -76,7 +76,7 @@ const CrearAgente = () => {
                    
                 </div>
             <div className="col-md-4">
-                <label className="form-label">Comision</label>
+                <label className="form-label">Comisión</label>
                     <input
                         value={COMISION_POR_VENTA}
                         onChange={(e) => setComision_por_venta(e.target.value)}

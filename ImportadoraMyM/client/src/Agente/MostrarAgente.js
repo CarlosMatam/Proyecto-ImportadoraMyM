@@ -36,9 +36,9 @@ const MostrarAG = () => {
                                 <th>NOMBRE</th>
                                 <th>PRIMER APELLIDO</th>
                                 <th>SEGUNDO APELLIDO</th>
-                                <th>ID DIRECCION</th>
-                                <th>ID TELEFONO</th>
-                                <th>COMISION</th>
+                                <th>ID DIRECCIÓN</th>
+                                <th>ID TELÉFONO</th>
+                                <th>COMISIÓN</th>
                                 <th>ID ZONA</th>
                             </tr>
                         </thead>

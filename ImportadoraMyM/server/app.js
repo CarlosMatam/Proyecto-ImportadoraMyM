@@ -3,13 +3,19 @@ import cors from 'cors'
 //importamos la conexión a la DB
 import db from "./database/db.js"
 //importamos nuestro enrutador
-import AgenteRoutes from './routes/routes.js'
+import AgenteRoutes from './routes/routes_Agente.js'
+import ProveedorRoutes from './routes/routes_Proveedor.js'
+import CobroRoutes from './routes/routes_Cobro.js'
+import PagoRoutes from './routes/routes_Pago.js'
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 app.use('/Agentes', AgenteRoutes)
+app.use('/Proveedores', ProveedorRoutes)
+app.use('/Cobros',CobroRoutes)
+app.use('/Pagos',PagoRoutes)
 
 try {
     await db.authenticate()
