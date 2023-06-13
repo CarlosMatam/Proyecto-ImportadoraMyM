@@ -11,7 +11,11 @@ import CrearCobro from './Cobro/CrearCobro';
 import MostrarPago from './Pago/MostrarPago';
 import CrearPago from './Pago/CrearPago';
 import CrearProveedor from './Proveedor/CrearProveedor'; 
-import EditarProveedor from './Proveedor/EditarProveedor'; 
+import EditarProveedor from './Proveedor/EditarProveedor';
+import CrearTransporte from './Transporte/CrearTransporte';
+import EditarTransporte from './Transporte/EditarTransporte';
+import MostrarTransporte from './Transporte/MostrarTransporte';
+
 //importamos el router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -34,6 +38,9 @@ function App() {
           <Route path='/Proveedores/create' element={<CrearProveedor />} />
           <Route path='/edit/:ID_AGENTE' element={<EditarAgente />} />
           <Route path='/Proveedores/edit/:ID_PROVEEDOR' element={<EditarProveedor />} />
+          <Route path='/Transportes' element={<MostrarTransporte/>}/>
+          <Route path='/Transportes/create' element={<CrearTransporte/>}/>
+          <Route path='/Transportes/edit/:ID_TRANSPORTE' element={<EditarTransporte/>}/>
         </Routes>
       </BrowserRouter>
 

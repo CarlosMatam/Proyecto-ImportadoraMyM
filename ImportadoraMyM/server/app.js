@@ -13,6 +13,8 @@ import TelefonoAgenteRoutes from './routes/routes_TelefonoAgente.js'
 import TipoCedulaRoutes from './routes/routes_TipoCedula.js'
 import DireccionProveedoresRoutes from './routes/routes_DireccionProveedor.js'
 import TelefonoProveedoresRoutes from './routes/routes_TelefonoProveedor.js'
+import TransporteRoutes from './routes/routes_Transporte.js'
+import TelefonoTransporteRoutes from './routes/routes_TelefonoTransporte.js'
 
 const app = express()
 
@@ -23,12 +25,15 @@ app.use('/Proveedores', ProveedorRoutes)
 app.use('/Cobros',CobroRoutes)
 app.use('/Pagos', PagoRoutes)
 app.use('/Zonas', ZonaRoutes)
-app.use('/Direcciones', DireccionAgenteRoutes)
-app.use('/Telefonos', TelefonoAgenteRoutes)
+app.use('/DireccionesAgente', DireccionAgenteRoutes)
+app.use('/TelefonosAgente', TelefonoAgenteRoutes)
 app.use('/TipoCedula', TipoCedulaRoutes)
 
 app.use('/DireccionesProvee', DireccionProveedoresRoutes)
 app.use('/TelefonosProvee', TelefonoProveedoresRoutes)
+
+app.use('/Transportes',TransporteRoutes)
+app.use('/TelefonosTrans',TelefonoTransporteRoutes)
 
 try {
     await db.authenticate()
