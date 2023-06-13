@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom'
 const URI = 'http://localhost:8000/Proveedores/'
 
 
-const MostrarProveedor = () => {
+const MostrarProveedores = () => {
+
+    const [search, setSearch] = useState("")
 
     const [Proveedores, setProveedor] = useState([])
     useEffect(() => {
         getProveedores()
     }, [])
+
 
     //procedimineto para mostrar todos los Agentes
     const getProveedores = async () => {
@@ -23,26 +26,56 @@ const MostrarProveedor = () => {
         await axios.delete(`${URI}${ID_PROVEEDOR}`)
         getProveedores()
     }
-    
+
+    //capturar valores input
+    const searcher = (e) => {
+        setSearch(e.target.value)
+
+    }
+
+    let resultado = []
+    if (!search) {
+        resultado = Proveedores
+    } else {
+        resultado = Proveedores.filter((dato) =>
+            dato.NOMBRE.toLowerCase().includes(search.toLocaleLowerCase()));
+    }
+
+
     return (
-        <div className='container'>
+        <div className='container-fluid'>
+            <label>Buscar por nombre: </label>
+            <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
                 <div className='col'>
-                    <Link to="/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
+                    <Link to="/Proveedores/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
                     <table className='table'>
                         <thead className='table-primary'>
                             <tr>
-                                
+
                                 <th>NOMBRE</th>
+                                <th>CORREO</th>
+                                <th>TIPO_CEDULA</th>
+                                <th>Provincia</th>
+                                <th>TELEFONO</th>
+                                <th>TELEFONO 2</th>
+                                <th>CEDULA</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {Proveedores.map((Proveedor) => (
+                            {resultado.map((Proveedor) => (
                                 <tr key={Proveedor.ID_PROVEEDOR}>
                                     <td> {Proveedor.NOMBRE} </td>
+                                    <td> {Proveedor.CORREO} </td>
+                                    <td> {Proveedor.TAB_TIPOS_CEDULA.DESCRIPCION} </td>
+                                    <td> {Proveedor.TAB_DIRECCIONES_PROVEEDORE.PROVINCIA} </td>
+                                    <td> {Proveedor.TAB_TELEFONOS_PROVEEDORE.TELEFONO_1} </td>
+                                    <td> {Proveedor.TAB_TELEFONOS_PROVEEDORE.TELEFONO_2} </td>
+                                    <td> {Proveedor.CEDULA} </td>
+                                  
                                     <td>
-                                        
-                                        <Link to={`/edit/${Proveedor.ID_PROVEEDOR}`} className='btn btn-info'>Editar</Link>
+
+                                        <Link to={`/Proveedores/edit/${Proveedor.ID_PROVEEDOR}`} className='btn btn-info'>Editar</Link>
                                         <button onClick={() => deleteProveedor(Proveedor.ID_PROVEEDOR)} className='btn btn-danger'>Eliminar</button>
                                     </td>
                                 </tr>
@@ -53,12 +86,12 @@ const MostrarProveedor = () => {
             </div>
 
 
-            
+
         </div>
 
-        
+
     )
 
 }
 
-export default MostrarProveedor
+export default MostrarProveedores
