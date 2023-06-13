@@ -28,7 +28,7 @@ const CrearPago = () => {
                     <input
                         value={FECHA_INGRESO}
                         onChange={(e) => setFecha_ingreso(e.target.value)}
-                        type="text"
+                        type="date"
                         className='form-control'
                     required/>
                    

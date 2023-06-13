@@ -11,6 +11,9 @@ import MostrarProveedor from './Proveedor/MostrarProveedor';
 import MostrarCobro from './Cobro/MostrarCobro'; 
 import CrearCobro from './Cobro/CrearCobro'; 
 
+import MostrarPago from './Pago/MostrarPago';
+import CrearPago from './Pago/CrearPago';
+
 //importamos el router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -25,6 +28,8 @@ function App() {
         <Routes>
           <Route path='/Cobros' element={<MostrarCobro />} />
           <Route path='/Cobros/create' element={<CrearCobro />} />
+          <Route path='/Pagos' element={<MostrarPago />} />
+          <Route path='/Pagos/create' element={<CrearPago />} />
           <Route path='/Proveedores' element={<MostrarProveedor />} />
           <Route path='/' element={<MostrarAG/>} />
           <Route path='/create' element={<CrearAgente />} />
