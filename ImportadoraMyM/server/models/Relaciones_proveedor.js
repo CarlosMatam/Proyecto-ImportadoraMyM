@@ -1,1 +1,0 @@
-/*A utilizar para la logica de las relaciones una vez se tengan las tablas relacionadas */

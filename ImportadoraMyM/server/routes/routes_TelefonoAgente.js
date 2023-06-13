@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllTelefono, getTelefono, createTelefono, updateTelefono, deleteTelefono } from '../controllers/Telefono_agente.js'
+import { getAllTelefono, getTelefono, createTelefono, updateTelefono, deleteTelefono } from '../controllers/Telefono_agenteController.js'
 const router = express.Router()
 
 router.get('/', getAllTelefono)

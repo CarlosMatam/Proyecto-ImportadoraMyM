@@ -1,3 +1,8 @@
-import TransporteModel from './Transporte.js';
+import TransporteSModel from "./Transporte.js";
+import Telefono_transporteSModel from "./Telefono_transporte.js";
 
-export { TransporteModel } 
+TransporteSModel.hasOne(Telefono_transporteSModel,{foreignKey:"ID_TRANSPORTE"})
+
+
+
+export{TransporteSModel,Telefono_transporteSModel}

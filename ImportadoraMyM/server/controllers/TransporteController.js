@@ -1,76 +1,114 @@
 //importamos el Modelo
-import { TransporteModel } from '../models/Relaciones_transporte.js';
+import {TransporteSModel,Telefono_transporteSModel} from "../models/Relaciones_transporte.js"
 
 //** Métodos CRUD **/
 
 //Crear registro
 export const createTransporte = async (req, res) => {
     try {
-        await TransporteModel.create(req.body)
+        const transporte = await TransporteSModel.create(req.body)
+        const transporteId = transporte.ID_TRANSPORTE;
+
         res.json({
+            ID_TRANSPORTE: transporteId,
             "message": "¡Registro creado correctamente!"
         })
     } catch (error) {
         res.json({ message: error.message })
     }
-}
+};
 
 //Eliminar registro
-export const deleteTransporte = async (req, res) => {
+export const deleteATransporte = async (req, res) => {
     try {
-        await TransporteModel.destroy({
-            where: { ID_AGENTE: req.params.ID_AGENTE }
-        })
+        const { ID_TRANSPORTE } = req.params;
+
+        // Buscar el agente de ventas por su ID junto con sus relaciones asociadas
+        const transporte = await TransporteSModel.findOne({
+            where: { ID_TRANSPORTE },
+            include: [Telefono_transporteSModel]
+        });
+
+        if (!transporte) {
+            return res.json({ message: 'No se encontró un transporte con el ID proporcionado' });
+        }
+
+        // Eliminar las relaciones asociadas (telefonos y direcciones)
+        await Telefono_transporteSModel.destroy({
+            where: { ID_TRANSPORTE }
+        });
+
+        // Eliminar el agente de ventas
+        await transporte.destroy();
+
         res.json({
-            "message": "¡Registro eliminado correctamente!"
-        })
+            message: '¡Registro eliminado correctamente!'
+        });
     } catch (error) {
-        res.json({ message: error.message })
+        res.status(500).json({ message: error.message });
     }
-}
+};
 
 
 //Modificar registro
 export const updateTransporte = async (req, res) => {
-    try {
-        await TransporteModel.update(req.body, {
-            where: { ID_AGENTE: req.params.ID_AGENTE }
-        })
-        res.json({
-            "message": "¡Registro actualizado correctamente!"
-        })
-    } catch (error) {
-        res.json({ message: error.message })
-    }
-}
+    const { ID_TRANSPORTE } = req.params;
 
-//Imprimir registro
-export const imprimirTransporte = async (req, res) => {
     try {
-        const transporte = await TransporteModel.findOne({
-            where: { ID_AGENTE: req.params.ID_AGENTE }
+        // Actualiza los datos del agente
+        await TransporteSModel.update(
+            {
+                NOMBRE: req.body.NOMBRE,
+            },
+            {
+                where: { ID_TRANSPORTE },
+            }
+        );
+
+        // Actualiza los teléfonos del agente
+        await Telefono_transporteSModel.update(
+            {
+                TELEFONO_1: req.body.TELEFONO_1,
+                TELEFONO_2: req.body.TELEFONO_2,
+                TELEFONO_3: req.body.TELEFONO_3,
+            },
+            {
+                where: { ID_TRANSPORTE },
+            }
+        );
+        res.json({
+            message: "Registro actualizado correctamente",
         });
-        if (transporte) {
-            console.log(transporte.toJSON());
-            res.status(200).send(transporte.toJSON());
-        } else {
-            console.log("Transporte no encontrado");
-            res.status(404).send("Transporte no encontrado");
-        }
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send("Error al buscar el Transporte");
+        console.error(error); 
+        res.status(500).json({ message: error.message });
     }
 };
+
+
 
 
 //Buscar un registro
 export const getTransporte = async (req, res) => {
     try {
-        const agente = await TransporteModel.findAll({
-            where: { ID_AGENTE: req.params.ID_AGENTE }
+        const transporte = await TransporteSModel.findAll({
+            where: { ID_TRANSPORTE: req.params.ID_TRANSPORTE }
         })
-        res.json(agente[0])
+        res.json(transporte[0])
+    } catch (error) {
+        res.json({ message: error.message })
+    }
+}
+
+export const getAllTransporte = async (req, res) => {
+    try {
+        const transporte = await TransporteSModel.findAll({
+            include:
+                [Telefono_transporteSModel]
+
+
+        })
+        res.json(transporte)
     } catch (error) {
         res.json({ message: error.message })
     }

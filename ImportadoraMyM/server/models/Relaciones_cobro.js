@@ -7,8 +7,8 @@ import CobroSModel from '../models/Cobro.js';
 
 
 
-
-CobroSModel.belongsTo(ClienteSModel, { foreignKey: "ID_CLIENTE" });
+ClienteSModel.hasMany(CobroSModel, { foreignKey: "ID_CLIENTE" })
+CobroSModel.belongsTo(ClienteSModel, { foreignKey: "ID_CLIENTE" }); //Se puede quitar este, hay que ver si corre primero con las dos
 
 
 
