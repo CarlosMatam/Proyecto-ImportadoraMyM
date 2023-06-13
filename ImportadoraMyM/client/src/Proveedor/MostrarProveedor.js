@@ -39,7 +39,7 @@ const MostrarProveedor = () => {
                         <tbody>
                             {Proveedores.map((Proveedor) => (
                                 <tr key={Proveedor.ID_PROVEEDOR}>
-                                    <td> {Agente.NOMBRE} </td>
+                                    <td> {Proveedor.NOMBRE} </td>
                                     <td>
                                         
                                         <Link to={`/edit/${Proveedor.ID_PROVEEDOR}`} className='btn btn-info'>Editar</Link>

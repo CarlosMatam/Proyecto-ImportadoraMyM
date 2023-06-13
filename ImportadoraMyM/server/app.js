@@ -4,9 +4,13 @@ import cors from 'cors'
 import db from "./database/db.js"
 //importamos nuestro enrutador
 import AgenteRoutes from './routes/routes_Agente.js'
+import ZonaRoutes from './routes/routes_Zona.js'
 import ProveedorRoutes from './routes/routes_Proveedor.js'
 import CobroRoutes from './routes/routes_Cobro.js'
 import PagoRoutes from './routes/routes_Pago.js'
+import DireccionAgenteRoutes from './routes/routes_DireccionAgente.js'
+import TelefonoAgenteRoutes from './routes/routes_TelefonoAgente.js'
+
 
 const app = express()
 
@@ -15,7 +19,11 @@ app.use(express.json())
 app.use('/Agentes', AgenteRoutes)
 app.use('/Proveedores', ProveedorRoutes)
 app.use('/Cobros',CobroRoutes)
-app.use('/Pagos',PagoRoutes)
+app.use('/Pagos', PagoRoutes)
+app.use('/Zonas', ZonaRoutes)
+app.use('/Direcciones', DireccionAgenteRoutes)
+app.use('/Telefonos', TelefonoAgenteRoutes)
+
 
 try {
     await db.authenticate()

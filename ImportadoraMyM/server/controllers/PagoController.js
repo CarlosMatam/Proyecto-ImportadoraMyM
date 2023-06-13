@@ -1,5 +1,5 @@
 //importamos el Modelo
-import {PagoSModel,ProveedorSModel} from '..models/Relaciones_pago.js';
+import {PagoSModel,ProveedorSModel} from '../models/Relaciones_pago.js';
 
 //** Métodos para el CRUD **/
 

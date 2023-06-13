@@ -1,8 +1,6 @@
 //importamos el Modelo
 
-/*import { Agente_ventaSModel, Direccion_agenteSModel, Telefono_agenteSModel, ZonaSModel } from '../models/Relaciones_agente_ventas.js';*/
-
-import ProveedorSModel from "../models/Proveedor";
+import ProveedorSModel from "../models/Proveedor.js";
 
 //** Métodos para el CRUD **/
 

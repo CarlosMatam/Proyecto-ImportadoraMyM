@@ -17,7 +17,7 @@ const CrearCobro = () => {
     const store = async (e) => {
         e.preventDefault()
         await axios.post(URI, { FECHA_INGRESO: FECHA_INGRESO, MONTO: MONTO, ESTADO: ESTADO, ID_CLIENTE: ID_CLIENTE })
-        navigate('/')
+        navigate('/Cobros')
     }
 
     return (
@@ -28,7 +28,7 @@ const CrearCobro = () => {
                     <input
                         value={FECHA_INGRESO}
                         onChange={(e) => setFecha_ingreso(e.target.value)}
-                        type="text"
+                        type="date"
                         className='form-control'
                     required/>
                    

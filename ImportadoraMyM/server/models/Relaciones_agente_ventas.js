@@ -5,9 +5,12 @@ import ZonaSModel from './Zona.js';
 
 
 
-Agente_ventaSModel.belongsTo(Direccion_agenteSModel, { foreignKey: "id_direccion" });
-Agente_ventaSModel.belongsTo(Telefono_agenteSModel, { foreignKey: "id_telefono" });
-ZonaSModel.hasMany(Agente_ventaSModel,{foreignKey: "id_zona"});
+Agente_ventaSModel.hasOne(Direccion_agenteSModel, { foreignKey: "ID_AGENTE", onDelete: 'CASCADE' });
+Agente_ventaSModel.hasOne(Telefono_agenteSModel, { foreignKey: "ID_AGENTE", onDelete: 'CASCADE' });
+
+Agente_ventaSModel.belongsTo(ZonaSModel, { foreignKey: "ID_ZONA" });
+
+
 
 
 

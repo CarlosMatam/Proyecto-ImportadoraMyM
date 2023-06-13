@@ -7,6 +7,8 @@ const URI = 'http://localhost:8000/Cobros/'
 
 const MostrarCobro = () => {
 
+    
+
     const [Cobros, setCobro] = useState([])
     useEffect(() => {
         getCobros()
@@ -25,10 +27,13 @@ const MostrarCobro = () => {
     }
     
     return (
+        
+
         <div className='container'>
+            
             <div className='row'>
                 <div className='col'>
-                    <Link to="/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
+                    <Link to="/Cobros/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
                     <table className='table'>
                         <thead className='table-primary'>
                             <tr>

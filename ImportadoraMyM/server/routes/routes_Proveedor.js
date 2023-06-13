@@ -1,5 +1,6 @@
+
 import express from 'express'
-import { getAllProveedor,getProveedor,createProveedor,updateProveedor,deleteProveedor } from '../controllers/ProveedorController'
+import { getAllProveedor, getProveedor, createProveedor, updateProveedor, deleteProveedor } from '../controllers/ProveedorController.js'
 const router = express.Router()
 
 router.get('/', getAllProveedor)
@@ -9,3 +10,4 @@ router.put('/:ID_PROVEEDOR', updateProveedor)
 router.delete('/:ID_PROVEEDOR', deleteProveedor)
 
 export default router
+

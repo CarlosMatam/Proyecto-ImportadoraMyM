@@ -1,37 +1,34 @@
 //importamos el Modelo
-import { ClienteSModel, CobroSModel} from '../models/Relaciones_cobro.js';
 
+import ZonaSModel from "../models/Zona.js";
 
 //** Métodos para el CRUD **/
 
 //Mostrar todos los registros
-export const getAllCobro = async (req, res) => {
+export const getAllZona = async (req, res) => {
     try {
-        const cobro = await CobroSModel.findAll({
-            include:
-                [ClienteSModel]
-
+        const zona = await ZonaSModel.findAll({
         })
-        res.json(cobro)
+        res.json(zona)
     } catch (error) {
         res.json({ message: error.message })
     }
 }
 //Mostrar un registro
-export const getCobro = async (req, res) => {
+export const getZona = async (req, res) => {
     try {
-        const cobro = await CobroSModel.findAll({
-            where: { ID_COBRO: req.params.ID_COBRO }
+        const zona = await ZonaSModel.findAll({
+            where: { ID_ZONA: req.params.ID_ZONA }
         })
-        res.json(cobro[0])
+        res.json(zona[0])
     } catch (error) {
         res.json({ message: error.message })
     }
 }
 //Crear un registro
-export const createCobro = async (req, res) => {
+export const createZona = async (req, res) => {
     try {
-        await CobroSModel.create(req.body)
+        await ZonaSModel.create(req.body)
         res.json({
             "message": "¡Registro creado correctamente!"
         })
@@ -40,10 +37,10 @@ export const createCobro = async (req, res) => {
     }
 }
 //Actualizar un registro
-export const updateCobro = async (req, res) => {
+export const updateZona = async (req, res) => {
     try {
-        await CobroSModel.update(req.body, {
-            where: { ID_COBRO: req.params.ID_COBRO }
+        await ZonaSModel.update(req.body, {
+            where: { ID_ZONA: req.params.ID_ZONA }
         })
         res.json({
             "message": "¡Registro actualizado correctamente!"
@@ -53,10 +50,10 @@ export const updateCobro = async (req, res) => {
     }
 }
 //Eliminar un registro
-export const deleteCobro = async (req, res) => {
+export const deleteZona = async (req, res) => {
     try {
-        await CobroSModel.destroy({
-            where: { ID_COBRO: req.params.ID_COBRO }
+        await ZonaSModel.destroy({
+            where: { ID_ZONA: req.params.ID_ZONA }
         })
         res.json({
             "message": "¡Registro eliminado correctamente!"
