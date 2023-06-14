@@ -7,7 +7,7 @@ const URI = 'http://localhost:8000/Cobros/'
 
 const MostrarCobro = () => {
 
-    
+    const [search, setSearch] = useState("")
 
     const [Cobros, setCobro] = useState([])
     useEffect(() => {
@@ -25,7 +25,21 @@ const MostrarCobro = () => {
         await axios.delete(`${URI}${ID_COBRO}`)
         getCobros()
     }
+
+    const searcher = (e) => {
+        setSearch(e.target.value)
+
+    }
     
+    let resultado = []
+    if (!search) {
+        resultado = Cobros
+    } else {
+        resultado = Cobros.filter((dato) =>
+            dato.NOMBRE.toLowerCase().includes(search.toLocaleLowerCase()));
+    } 
+    //MODIFICAR CUANDO SE TENGA CLIENTE
+
     return (
         
 
@@ -41,19 +55,19 @@ const MostrarCobro = () => {
                                 <th>FECHA DE INGRESO</th>
                                 <th>MONTO</th>
                                 <th>ESTADO</th>
-                                <th>ID CLIENTE</th>
+                                <th>NOMBRE CLIENTE</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {Cobros.map((Cobro) => (
+                            {resultado.map((Cobro) => (
                                 <tr key={Cobro.ID_COBRO}>
                                     <td> {Cobro.FECHA_INGRESO} </td>
                                     <td> {Cobro.MONTO} </td>
                                     <td> {Cobro.ESTADO} </td>
-                                    <td> {Cobro.ID_CLIENTE} </td>
+                                    <td> {Cobro.TAB_CLIENTES.NOMBRE} </td>
                                     <td>
                                         
-                                        <Link to={`/edit/${Cobro.ID_COBRO}`} className='btn btn-info'>Editar</Link>
+                                        <Link to={`/Cobros/edit/${Cobro.ID_COBRO}`} className='btn btn-info'>Editar</Link>
                                         <button onClick={() => deleteCobro(Cobro.ID_COBRO)} className='btn btn-danger'>Eliminar</button>
                                     </td>
                                 </tr>

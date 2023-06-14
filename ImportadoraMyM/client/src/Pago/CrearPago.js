@@ -1,12 +1,25 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
 const URI = 'http://localhost:8000/Pagos/'
+const URI2 = 'http://localhost:8000/Proveedores/'
 
 const CrearPago = () => {
     
+    
+    const [Proveedores, setProveedor] = useState([])
+    useEffect(() => {
+        getProveedores()
+    }, [])
+
+    //procedimineto para mostrar todos los tipos de cedula
+    const getProveedores = async () => {
+        const res = await axios.get(URI2)
+        setProveedor(res.data)
+    }
+
     const [FECHA_INGRESO, setFecha_ingreso] = useState('')
     const [MONTO, setMonto] = useState('')
     const [ESTADO, setEstado] = useState('')
@@ -17,7 +30,7 @@ const CrearPago = () => {
     const store = async (e) => {
         e.preventDefault()
         await axios.post(URI, { FECHA_INGRESO: FECHA_INGRESO, MONTO: MONTO, ESTADO: ESTADO, ID_PROVEEDOR: ID_PROVEEDOR })
-        navigate('/')
+        navigate('/Pagos')
     }
 
     return (
@@ -62,6 +75,11 @@ const CrearPago = () => {
                     required/>
                     
                 </div>
+            <select value={ID_PROVEEDOR} onChange={(e) => setId_proveedor(e.target.value)}>
+                {Proveedores.map((option) => (
+                    <option key={ID_PROVEEDOR} value={option.ID_PROVEEDOR} >{option.NOMBRE}</option>
+                ))}
+            </select>
             
             <div className="col-12">
                     <button type="submit" class="btn btn-primary">Crear </button>

@@ -9,18 +9,6 @@ const URI2 = 'http://localhost:8000/TelefonosTrans/'
 
 const CrearTransporte = () => {
 
-    /*const [Zonas, setZona] = useState([])
-    useEffect(() => {
-        getZonas()
-    }, [])*/
-
-    //procedimineto para mostrar todos lAS ZONAS
-    /*const getZonas = async () => {
-        const res = await axios.get(URI2)
-        setZona(res.data)
-    }*/
-
-
     const [NOMBRE, setNombre] = useState('')
 
     const [TELEFONO_1, setTelefono_1] = useState('')
@@ -43,7 +31,7 @@ const CrearTransporte = () => {
       
         await axios.post(URI2, { TELEFONO_1: TELEFONO_1, TELEFONO_2: TELEFONO_2, TELEFONO_3: TELEFONO_3, ID_TRANSPORTE: ID_TRANSPORTE  })
 
-        navigate('/')
+        navigate('/Transportes')
     }
 
     return (

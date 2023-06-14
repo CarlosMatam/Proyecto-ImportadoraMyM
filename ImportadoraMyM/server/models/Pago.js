@@ -7,7 +7,7 @@ const PagoSModel = db.define('TAB_PAGOS', {
     ID_PAGO: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     FECHA_INGRESO: { type: DataTypes.DATE},
     MONTO: { type: DataTypes.NUMBER },
-    ESTADO: { type: DataTypes.INTEGER },
+    ESTADO: { type: DataTypes.TINYINT },
     ID_PROVEEDOR: { type: DataTypes.INTEGER },
 })
 

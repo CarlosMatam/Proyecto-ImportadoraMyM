@@ -19,7 +19,7 @@ const EditarCobro = () => {
         await axios.put(URI+ID_COBRO, {
             FECHA_INGRESO: FECHA_INGRESO, MONTO: MONTO, ESTADO: ESTADO, ID_CLIENTE: ID_CLIENTE
         })
-        navigate('/')
+        navigate('/Cobros')
     }
 
     

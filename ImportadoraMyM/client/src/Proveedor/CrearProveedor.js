@@ -91,7 +91,7 @@ const CrearProveedor = () => {
 
             <select value={TIPO_CEDULA} onChange={(e) => setTipo_cedula(e.target.value)}>
                 {Tipos.map((option) => (
-                    <option key={ID_TIPO_CEDULA} value={option.ID_TIPO_CEDULA} >{option.DESCRIPCION}</option>
+                    <option key={option.ID_TIPO_CEDULA} value={option.ID_TIPO_CEDULA} >{option.DESCRIPCION}</option>
                 ))}
             </select>
 

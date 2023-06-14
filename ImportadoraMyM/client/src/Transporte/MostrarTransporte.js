@@ -48,7 +48,7 @@ const MostrarTransporte = () => {
             <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
                 <div className='col'>
-                    <Link to="/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
+                    <Link to="/Transportes/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
                     <table className='table'>
                         <thead className='table-primary'>
                             <tr>
@@ -68,7 +68,7 @@ const MostrarTransporte = () => {
                                     <td> {Transporte.TAB_TELEFONOS_TRANSPORTES.TELEFONO_3} </td>
                                     <td>
 
-                                        <Link to={`/edit/${Transporte.ID_TRANSPORTE}`} className='btn btn-info'>Editar</Link>
+                                        <Link to={`/Transportes/edit/${Transporte.ID_TRANSPORTE}`} className='btn btn-info'>Editar</Link>
                                         <button onClick={() => deleteTransporte(Transporte.ID_TRANSPORTE)} className='btn btn-danger'>Eliminar</button>
                                     </td>
                                 </tr>

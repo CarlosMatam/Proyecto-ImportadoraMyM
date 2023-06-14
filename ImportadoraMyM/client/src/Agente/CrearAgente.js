@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 const URI = 'http://localhost:8000/Agentes/'
 const URI2 = 'http://localhost:8000/Zonas/'
-const URI3 = 'http://localhost:8000/Direcciones/'
-const URI4 = 'http://localhost:8000/Telefonos/'
+const URI3 = 'http://localhost:8000/DireccionesAgente/'
+const URI4 = 'http://localhost:8000/TelefonosAgente/'
 
 
 const CrearAgente = () => {
