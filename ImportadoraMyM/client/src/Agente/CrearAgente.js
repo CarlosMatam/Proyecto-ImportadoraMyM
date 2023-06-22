@@ -9,28 +9,11 @@ const URI2 = 'http://localhost:8000/Zonas/';
 const URI3 = 'http://localhost:8000/DireccionesAgente/';
 const URI4 = 'http://localhost:8000/TelefonosAgente/';
 
-const validationSchema = Yup.object().shape({
-    NOMBRE: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Nombre es requerido'),
-    APELLIDO_PATERNO: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Primer Apellido es requerido'),
-    APELLIDO_MATERNO: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Segundo Apellido es requerido'),
-    COMISION_POR_VENTA: Yup.number().typeError('Comisión debe ser un número').required('Comisión es requerida'),
-    ID_ZONA: Yup.string().required('Zona es requerida'),
-    IDENTIFICACION: Yup.string().matches(/^\d+$/, 'Teléfono 3 solo debe contener números').required('Cédula es requerida'),
-    PROVINCIA: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Provincia es requerida'),
-    CANTON: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Cantón es requerido'),
-    DISTRITO: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Distrito es requerido'),
-    BARRIO: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Barrio es requerido'),
-    OTRAS_SENNAS: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Otras señas es requerido'),
-    TELEFONO_1: Yup.string()
-        .matches(/^\d{8}$/, 'Tiene que tener 8 digitos')
-        .required('Teléfono 1 es requerido'),
-    TELEFONO_2: Yup.string()
-        .matches(/^\d{8}$/, 'Tiene que tener 8 digitos')
-        .required('Teléfono 2 es requerido'),
-    TELEFONO_3: Yup.string()
-        .matches(/^\d{8}$/, 'Tiene que tener 8 digitos')
-        .required('Teléfono 3 es requerido'),
-});
+const URI = 'http://localhost:8000/Agentes/'
+const URI2 = 'http://localhost:8000/Zonas/'
+const URI3 = 'http://localhost:8000/Direcciones/'
+const URI4 = 'http://localhost:8000/Telefonos/'
+
 
 const CrearAgente = () => {
     const [Zonas, setZona] = useState([]);

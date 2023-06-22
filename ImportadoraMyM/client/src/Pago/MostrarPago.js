@@ -7,6 +7,8 @@ const URI = 'http://localhost:8000/Pagos/'
 
 const MostrarPago = () => {
 
+    const [search, setSearch] = useState("")
+
     const [Pagos, setPago] = useState([])
     useEffect(() => {
         getPagos()
@@ -23,9 +25,24 @@ const MostrarPago = () => {
         await axios.delete(`${URI}${ID_PAGO}`)
         getPagos()
     }
+
+    const searcher = (e) => {
+        setSearch(e.target.value)
+
+    }
+
+    let resultado = []
+    if (!search) {
+        resultado = Pagos
+    } else {
+        resultado = Pagos.filter((dato) =>
+            dato.NOMBRE.toLowerCase().includes(search.toLocaleLowerCase()));
+    }
     
     return (
         <div className='container'>
+            <label>Buscar por nombre: </label>
+            <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
                 <div className='col'>
                     <Link to="/Pagos/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
@@ -40,7 +57,7 @@ const MostrarPago = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {Pagos.map((Pago) => (
+                            {resultado.map((Pago) => (
                                 <tr key={Pago.ID_PAGO}>
                                     <td> {Pago.FECHA_INGRESO} </td>
                                     <td> {Pago.MONTO} </td>

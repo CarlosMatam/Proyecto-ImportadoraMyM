@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom'
 
 
 const URI = 'http://localhost:8000/Cobros/'
+//RECORDAR HACER LA const URI2 cuando exista cliente
 
 const CrearCobro = () => {
+    
+    const [search, setSearch] = useState("")
     
     const [FECHA_INGRESO, setFecha_ingreso] = useState('')
     const [MONTO, setMonto] = useState('')
