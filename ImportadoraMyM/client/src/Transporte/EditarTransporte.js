@@ -32,7 +32,7 @@ const EditarTransporte = () => {
             TELEFONO_3: TELEFONO_3
         });
 
-        navigate('/');
+        navigate('/Transportes');
     };
 
 

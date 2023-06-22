@@ -19,7 +19,7 @@ export const createTransporte = async (req, res) => {
 };
 
 //Eliminar registro
-export const deleteATransporte = async (req, res) => {
+export const deleteTransporte = async (req, res) => {
     try {
         const { ID_TRANSPORTE } = req.params;
 

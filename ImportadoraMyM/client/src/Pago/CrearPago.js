@@ -17,7 +17,7 @@ const CrearPago = () => {
     const store = async (e) => {
         e.preventDefault()
         await axios.post(URI, { FECHA_INGRESO: FECHA_INGRESO, MONTO: MONTO, ESTADO: ESTADO, ID_PROVEEDOR: ID_PROVEEDOR })
-        navigate('/')
+        navigate('/Pagos')
     }
 
     return (

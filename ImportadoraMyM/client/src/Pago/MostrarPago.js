@@ -28,14 +28,14 @@ const MostrarPago = () => {
         <div className='container'>
             <div className='row'>
                 <div className='col'>
-                    <Link to="/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
+                    <Link to="/Pagos/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
                     <table className='table'>
                         <thead className='table-primary'>
                             <tr>
                                 
                                 <th>FECHA DE INGRESO</th>
                                 <th>MONTO</th>
-                                <th>ESTADO</th>
+                                
                                 <th>ID PROVEEDOR</th>
                             </tr>
                         </thead>
@@ -44,11 +44,11 @@ const MostrarPago = () => {
                                 <tr key={Pago.ID_PAGO}>
                                     <td> {Pago.FECHA_INGRESO} </td>
                                     <td> {Pago.MONTO} </td>
-                                    <td> {Pago.ESTADO} </td>
+                                 
                                     <td> {Pago.ID_PROVEEDOR} </td>
                                     <td>
                                         
-                                        <Link to={`/edit/${Pago.ID_PAGO}`} className='btn btn-info'>Editar</Link>
+                                        <Link to={`/Pagos/edit/${Pago.ID_PAGO}`} className='btn btn-info'>Editar</Link>
                                         <button onClick={() => deletePago(Pago.ID_PAGO)} className='btn btn-danger'>Eliminar</button>
                                     </td>
                                 </tr>

@@ -10,6 +10,7 @@ import MostrarCobro from './Cobro/MostrarCobro';
 import CrearCobro from './Cobro/CrearCobro'; 
 import MostrarPago from './Pago/MostrarPago';
 import CrearPago from './Pago/CrearPago';
+import EditarPago from './Pago/EditarPago';
 import CrearProveedor from './Proveedor/CrearProveedor'; 
 import EditarProveedor from './Proveedor/EditarProveedor';
 import CrearTransporte from './Transporte/CrearTransporte';
@@ -31,6 +32,7 @@ function App() {
           <Route path='/Cobros' element={<MostrarCobro />} />
           <Route path='/Cobros/create' element={<CrearCobro />} />
           <Route path='/Pagos' element={<MostrarPago />} />
+          <Route path='/Pagos/edit/:ID_PAGO' element={<EditarPago />} />
           <Route path='/Pagos/create' element={<CrearPago />} />
           <Route path='/Proveedores' element={<MostrarProveedores/>} />
           <Route path='/' element={<MostrarAG/>} />

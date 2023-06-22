@@ -1,11 +1,11 @@
 import express from 'express'
-import { getAllTransporte, getransporte, createransporte, updateransporte, deleteransporte } from '../controllers/ransporteController.js'
+import { getAllTransporte, getTransporte, createTransporte, updateTransporte, deleteTransporte } from '../controllers/TransporteController.js'
 const router = express.Router()
 
-router.get('/', getAllransporte)
-router.get('/:ID_TRANSPORTE', getransporte)
-router.post('/', createransporte)
-router.put('/:ID_TRANSPORTE', updateransporte)
-router.delete('/:ID_TRANSPORTE', deleteransporte)
+router.get('/', getAllTransporte)
+router.get('/:ID_TRANSPORTE', getTransporte)
+router.post('/', createTransporte)
+router.put('/:ID_TRANSPORTE', updateTransporte)
+router.delete('/:ID_TRANSPORTE', deleteTransporte)
 
 export default router

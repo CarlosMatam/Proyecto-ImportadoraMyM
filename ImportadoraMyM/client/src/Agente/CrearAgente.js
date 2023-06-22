@@ -1,225 +1,321 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 
+const URI = 'http://localhost:8000/Agentes/';
+const URI2 = 'http://localhost:8000/Zonas/';
+const URI3 = 'http://localhost:8000/DireccionesAgente/';
+const URI4 = 'http://localhost:8000/TelefonosAgente/';
 
-const URI = 'http://localhost:8000/Agentes/'
-const URI2 = 'http://localhost:8000/Zonas/'
-const URI3 = 'http://localhost:8000/Direcciones/'
-const URI4 = 'http://localhost:8000/Telefonos/'
-
+const validationSchema = Yup.object().shape({
+    NOMBRE: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Nombre es requerido'),
+    APELLIDO_PATERNO: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Primer Apellido es requerido'),
+    APELLIDO_MATERNO: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Segundo Apellido es requerido'),
+    COMISION_POR_VENTA: Yup.number().typeError('Comisión debe ser un número').required('Comisión es requerida'),
+    ID_ZONA: Yup.string().required('Zona es requerida'),
+    IDENTIFICACION: Yup.string().matches(/^\d+$/, 'Teléfono 3 solo debe contener números').required('Cédula es requerida'),
+    PROVINCIA: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Provincia es requerida'),
+    CANTON: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Cantón es requerido'),
+    DISTRITO: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Distrito es requerido'),
+    BARRIO: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Barrio es requerido'),
+    OTRAS_SENNAS: Yup.string().matches(/^[a-zA-Z\s]+$/, 'No debe de contener numeros').required('Otras señas es requerido'),
+    TELEFONO_1: Yup.string()
+        .matches(/^\d{8}$/, 'Tiene que tener 8 digitos')
+        .required('Teléfono 1 es requerido'),
+    TELEFONO_2: Yup.string()
+        .matches(/^\d{8}$/, 'Tiene que tener 8 digitos')
+        .required('Teléfono 2 es requerido'),
+    TELEFONO_3: Yup.string()
+        .matches(/^\d{8}$/, 'Tiene que tener 8 digitos')
+        .required('Teléfono 3 es requerido'),
+});
 
 const CrearAgente = () => {
-
-    const [Zonas, setZona] = useState([])
+    const [Zonas, setZona] = useState([]);
     useEffect(() => {
-        getZonas()
-    }, [])
+        getZonas();
+    }, []);
 
-    //procedimineto para mostrar todos lAS ZONAS
+    // Procedure to fetch all Zonas
     const getZonas = async () => {
-        const res = await axios.get(URI2)
-        setZona(res.data)
-    }
+        const res = await axios.get(URI2);
+        setZona(res.data);
+    };
 
-    
+    const navigate = useNavigate();
 
+    // Procedure to store data
+    const store = async (values) => {
+        const {
+            NOMBRE,
+            APELLIDO_PATERNO,
+            APELLIDO_MATERNO,
+            COMISION_POR_VENTA,
+            ID_ZONA,
+            IDENTIFICACION,
+            PROVINCIA,
+            CANTON,
+            DISTRITO,
+            BARRIO,
+            OTRAS_SENNAS,
+            TELEFONO_1,
+            TELEFONO_2,
+            TELEFONO_3,
+        } = values;
 
-    const [NOMBRE, setNombre] = useState('')
-    const [APELLIDO_PATERNO, setApellido_paterno] = useState('')
-    const [APELLIDO_MATERNO, setApellido_materno] = useState('')
-    const [COMISION_POR_VENTA, setComision_por_venta] = useState('')
-    const [ID_ZONA, setId_zona] = useState('')
-    const [IDENTIFICACION, setIdentificacion] = useState('')
+        const agenteDeVentasResponse = await axios.post(URI, {
+            NOMBRE,
+            APELLIDO_PATERNO,
+            APELLIDO_MATERNO,
+            COMISION_POR_VENTA,
+            ID_ZONA,
+            IDENTIFICACION,
+        });
 
-
-    const [PROVINCIA, setProvincia] = useState('')
-    const [CANTON, setCanton] = useState('')
-    const [DISTRITO, setDistrito] = useState('')
-    const [BARRIO, setBarrio] = useState('')
-    const [OTRAS_SENNAS, setOtras_sennas] = useState('')
-
-    const [TELEFONO_1, setTelefono_1] = useState('')
-    const [TELEFONO_2, setTelefono_2] = useState('')
-    const [TELEFONO_3, setTelefono_3] = useState('')
-    
-
-
-    const navigate = useNavigate()
-
-    //procedimiento guardar
-    const store = async (e) => {
-        e.preventDefault()
-        
-        const agenteDeVentasResponse = await axios.post(URI, { NOMBRE: NOMBRE, APELLIDO_PATERNO: APELLIDO_PATERNO, APELLIDO_MATERNO: APELLIDO_MATERNO, COMISION_POR_VENTA: COMISION_POR_VENTA, ID_ZONA: ID_ZONA, IDENTIFICACION: IDENTIFICACION })
-
-
-        
         const ID_AGENTE = agenteDeVentasResponse.data.ID_AGENTE;
-      
 
-        await axios.post(URI3, { PROVINCIA: PROVINCIA, CANTON: CANTON, DISTRITO: DISTRITO, BARRIO: BARRIO, OTRAS_SENNAS: OTRAS_SENNAS, ID_AGENTE: ID_AGENTE })
+        await axios.post(URI3, {
+            PROVINCIA,
+            CANTON,
+            DISTRITO,
+            BARRIO,
+            OTRAS_SENNAS,
+            ID_AGENTE,
+        });
 
-        await axios.post(URI4, { TELEFONO_1: TELEFONO_1, TELEFONO_2: TELEFONO_2, TELEFONO_3: TELEFONO_3, ID_AGENTE: ID_AGENTE  })
+        await axios.post(URI4, {
+            TELEFONO_1,
+            TELEFONO_2,
+            TELEFONO_3,
+            ID_AGENTE
+        })
 
-        navigate('/')
-    }
+        navigate('/');
+    };
 
     return (
+        <Formik
+            initialValues={{
+                NOMBRE: '',
+                APELLIDO_PATERNO: '',
+                APELLIDO_MATERNO: '',
+                COMISION_POR_VENTA: '',
+                ID_ZONA: '',
+                IDENTIFICACION: '',
+                PROVINCIA: '',
+                CANTON: '',
+                DISTRITO: '',
+                BARRIO: '',
+                OTRAS_SENNAS: '',
+                TELEFONO_1: '',
+                TELEFONO_2: '',
+                TELEFONO_3: '',
+            }}
+            validationSchema={validationSchema}
+            onSubmit={store}
+        >
+            <Form>
+                <div className="col-md-4">
+                    <label className="form-label">Nombre</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="NOMBRE"
+                        required
+                    />
+                    <ErrorMessage
+                        name="NOMBRE"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Apellido Paterno</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="APELLIDO_PATERNO"
+                        required
+                    />
+                    <ErrorMessage
+                        name="APELLIDO_PATERNO"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Apellido Materno</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="APELLIDO_MATERNO"
+                        required
+                    />
+                    <ErrorMessage
+                        name="APELLIDO_MATERNO"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Comisión</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="COMISION_POR_VENTA"
+                        required
+                    />
+                    <ErrorMessage
+                        name="COMISION_POR_VENTA"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-2">
+                    <label className="form-label">Cedula</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="IDENTIFICACION"
+                        required
+                    />
+                    <ErrorMessage
+                        name="IDENTIFICACION"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-2">
+                    <label className="form-label">Zona</label>
+                    <Field as="select" className="form-control" name="ID_ZONA" required>
+                        <option value="">Seleccionar Zona</option>
+                        {Zonas.map((option) => (
+                            <option key={option.ID_ZONA} value={option.ID_ZONA}>
+                                {option.NOMBRE}
+                            </option>
+                        ))}
+                    </Field>
+                    <ErrorMessage
+                        name="ID_ZONA"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Provincia</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="PROVINCIA"
+                        required
+                    />
+                    <ErrorMessage
+                        name="PROVINCIA"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Cantón</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="CANTON"
+                        required
+                    />
+                    <ErrorMessage
+                        name="CANTON"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Distrito</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="DISTRITO"
+                        required
+                    />
+                    <ErrorMessage
+                        name="DISTRITO"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Barrio</label>
+                    <Field type="text" className="form-control" name="BARRIO" required />
+                    <ErrorMessage
+                        name="BARRIO"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Otras Señas</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="OTRAS_SENNAS"
+                        required
+                    />
+                    <ErrorMessage
+                        name="OTRAS_SENNAS"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Teléfono 1</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="TELEFONO_1"
+                        required
+                    />
+                    <ErrorMessage
+                        name="TELEFONO_1"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Teléfono 2</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="TELEFONO_2"
+                        required
+                    />
+                    <ErrorMessage
+                        name="TELEFONO_2"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Teléfono 3</label>
+                    <Field
+                        type="text"
+                        className="form-control"
+                        name="TELEFONO_3"
+                        required
+                    />
+                    <ErrorMessage
+                        name="TELEFONO_3"
+                        component="div"
+                        className="text-danger"
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">
+                    Guardar
+                </button>
+            </Form>
+        </Formik>
+    );
+};
 
-        <form className="row g-3" onSubmit={store}  >
-            <div className="col-md-6">
-                <label className="form-label">Nombre</label>
-                <input
-                    value={NOMBRE}
-                    onChange={(e) => setNombre(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-
-            </div>
-            <div className="col-md-6">
-                <label className="form-label">Primer Apellido</label>
-                <input
-                    value={APELLIDO_PATERNO}
-                    onChange={(e) => setApellido_paterno(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-            <div className="col-12">
-                <label className="form-label">Segundo Apellido</label>
-                <input
-                    value={APELLIDO_MATERNO}
-                    onChange={(e) => setApellido_materno(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-
-            </div>
-          
-            <div className="col-md-4">
-                <label className="form-label">Comisión</label>
-                <input
-                    value={COMISION_POR_VENTA}
-                    onChange={(e) => setComision_por_venta(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-
-            <div className="col-md-2">
-                <label className="form-label">Cedula</label>
-                <input
-                    value={IDENTIFICACION}
-                    onChange={(e) => setIdentificacion(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-
-            <select value={ID_ZONA} onChange={(e) => setId_zona(e.target.value)}>
-                {Zonas.map((option) => (
-                    <option key={option.ID_ZONA} value={option.ID_ZONA} >{option.NOMBRE}</option>
-                ))}
-            </select>
-
-
-            <div className="col-md-2">
-                <label className="form-label">PROVINCIA</label>
-                <input
-                    value={PROVINCIA}
-                    onChange={(e) => setProvincia(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-            <div className="col-md-2">
-                <label className="form-label">CANTON</label>
-                <input
-                    value={CANTON}
-                    onChange={(e) => setCanton(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-            <div className="col-md-2">
-                <label className="form-label">DISTRITO</label>
-                <input
-                    value={DISTRITO}
-                    onChange={(e) => setDistrito(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-            <div className="col-md-2">
-                <label className="form-label">BARRIO</label>
-                <input
-                    value={BARRIO}
-                    onChange={(e) => setBarrio(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-            <div className="col-md-2">
-                <label className="form-label">OTRAS_SENNAS</label>
-                <input
-                    value={OTRAS_SENNAS}
-                    onChange={(e) => setOtras_sennas(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-
-            <div className="col-md-2">
-                <label className="form-label">TELEFONO_1</label>
-                <input
-                    value={TELEFONO_1}
-                    onChange={(e) => setTelefono_1(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-            <div className="col-md-2">
-                <label className="form-label">TELEFONO_2</label>
-                <input
-                    value={TELEFONO_2}
-                    onChange={(e) => setTelefono_2(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-
-            <div className="col-md-2">
-                <label className="form-label">TELEFONO_3</label>
-                <input
-                    value={TELEFONO_3}
-                    onChange={(e) => setTelefono_3(e.target.value)}
-                    type="text"
-                    className='form-control'
-                    required />
-            </div>
-
-
-
-            <div className="col-12">
-                <button type="submit" class="btn btn-primary">Crear </button>
-            </div>
-        </form>
-
-
-    )
-}
-
-export default CrearAgente
-
-
+export default CrearAgente;
