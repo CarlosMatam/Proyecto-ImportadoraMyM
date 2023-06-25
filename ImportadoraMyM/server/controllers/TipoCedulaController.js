@@ -1,6 +1,6 @@
 //importamos el Modelo
 
-import TipoCSModel from "../models/Tipos_cedula.js";
+import {TipoCSModel,ClienteSModel} from "../models/Relaciones_cliente.js";
 
 //** Métodos para el CRUD **/
 
