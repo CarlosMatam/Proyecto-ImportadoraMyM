@@ -17,6 +17,9 @@ import EditarProveedor from './Proveedor/EditarProveedor';
 import CrearTransporte from './Transporte/CrearTransporte';
 import EditarTransporte from './Transporte/EditarTransporte';
 import MostrarTransporte from './Transporte/MostrarTransporte';
+import CrearCliente from './Cliente/CrearCliente';
+import EditarCliente from './Cliente/EditarCliente';
+import MostrarCliente from './Cliente/MostrarCliente';
 
 //importamos el router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -46,6 +49,9 @@ function App() {
           <Route path='/Transportes' element={<MostrarTransporte/>}/>
           <Route path='/Transportes/create' element={<CrearTransporte/>}/>
           <Route path='/Transportes/edit/:ID_TRANSPORTE' element={<EditarTransporte/>}/>
+          <Route path='/Clientes' element={<MostrarCliente/>}/>
+          <Route path='/Clientes/create' element={<CrearCliente/>}/>
+          <Route path='/Clientes/edit/:ID_CLIENTE' element={<EditarCliente/>}/>
         </Routes>
       </BrowserRouter>
 

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const URI = 'http://localhost:8000/Clientes/'
 
 
-const MostrarClientes = () => {
+const MostrarCliente = () => {
 
     const [search, setSearch] = useState("")
 
@@ -98,4 +98,4 @@ const MostrarClientes = () => {
 
 }
 
-export default MostrarClientes;
+export default MostrarCliente;
