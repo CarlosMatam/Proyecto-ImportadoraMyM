@@ -22,6 +22,7 @@ import EditarCliente from './Cliente/EditarCliente';
 import MostrarCliente from './Cliente/MostrarCliente';
 import CrearProducto from './Producto/CrearProducto';
 import EditarProducto from './Producto/EditarProducto';
+import MostrarProducto from './Producto/MostrarProducto';
 
 //importamos el router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -56,6 +57,7 @@ function App() {
           <Route path='/Clientes/edit/:ID_CLIENTE' element={<EditarCliente/>}/>
           <Route path='/Productos/create' element={<CrearProducto/>}/>
           <Route path='/Productos/edit/:ID_PRODUCTO' element={<EditarProducto/>}/>
+          <Route path='/Productos' element={<MostrarProducto/>}/>
         </Routes>
       </BrowserRouter>
 
