@@ -11,6 +11,7 @@ const URI5 = 'http://localhost:8000/TiposCliente/';
 
 const EditarCliente = () => {
     const [TiposCedulas, setTipo_cedula] = useState([]);
+    
     useEffect(() => {
         getTiposCedulas();
     }, []);
@@ -21,7 +22,8 @@ const EditarCliente = () => {
         setTipo_cedula(res.data);
     };
 
-    const [TiposClientes, setTipo_Cliente] = useState([]);
+    const [TiposClientes, setTipo_cliente] = useState([]);
+    
     useEffect(() => {
         getTiposClientes();
     }, []);
@@ -29,7 +31,7 @@ const EditarCliente = () => {
     // Procedure to fetch all Zonas
     const getTiposClientes = async () => {
         const res = await axios.get(URI5);
-        setTipo_Cliente(res.data);
+        setTipo_cliente(res.data);
     };
 
     const [NOMBRE, setNombre] = useState('')
@@ -50,6 +52,8 @@ const EditarCliente = () => {
     const [TELEFONO_3, setTelefono_3] = useState('')
     const navigate = useNavigate()
     const { ID_CLIENTE } = useParams()
+    const {ID_TIPO_CLIENTE}=useParams()
+    const {TIPO_CEDULA}=useParams()
 
 
     //procedimiento para actualizar
@@ -97,9 +101,7 @@ const EditarCliente = () => {
         setNombre(res.data.NOMBRE);
         setApellido_paterno(res.data.APELLIDO_PATERNO);
         setApellido_materno(res.data.APELLIDO_MATERNO);
-        setId_tipo_cliente(res.data.ID_TIPO_CLIENTE);
         setCorreo(res.data.CORREO);
-        setTipo_cedula(res.data.TIPO_CEDULA);
         setCedula(res.data.CEDULA);
 
         // Obtener los teléfonos y direcciones del agente
@@ -115,6 +117,11 @@ const EditarCliente = () => {
         setDistrito(direccionesRes.data.DISTRITO);
         setBarrio(direccionesRes.data.BARRIO);
         setOtras_sennas(direccionesRes.data.OTRAS_SENNAS);
+
+        const tipoCedulaRes=await axios.get(URI2 + TIPO_CEDULA);
+        setTipo_cedula(tipoCedulaRes.data.DESCRIPCION);
+        const tipoClienteRes=await axios.get(URI5 + ID_TIPO_CLIENTE);
+        setTipo_cliente(tipoClienteRes.data.NOMBRE);
     };
 
     return (

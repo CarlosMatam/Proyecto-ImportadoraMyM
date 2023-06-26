@@ -16,7 +16,7 @@ const ProductoSModel = db.define('TAB_PRODUCTOS', {
     EXISTENCIA_ACTUAL: { type: DataTypes.INTEGER },
     CABYS: { type: DataTypes.STRING },
     COMPANIA: { type: DataTypes.INTEGER },
-    FECHA_INGRESO: { type: DataTypes.NUMBER },
+    FECHA_INGRESO: { type: DataTypes.DATE },
 })
 
 export default ProductoSModel
