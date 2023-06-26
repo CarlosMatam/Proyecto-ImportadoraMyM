@@ -1,13 +1,13 @@
 //importamos el Modelo
 
-import {TipoCSModel} from "../models/Relaciones_cliente.js";
+import {Tipo_clienteSModel} from "../models/Relaciones_cliente.js";
 
 //** Métodos para el CRUD **/
 
 //Mostrar todos los registros
 export const getAllTipo = async (req, res) => {
     try {
-        const tipo = await TipoCSModel.findAll({
+        const tipo = await Tipo_clienteSModel.findAll({
         })
         res.json(tipo)
     } catch (error) {
@@ -17,8 +17,8 @@ export const getAllTipo = async (req, res) => {
 //Mostrar un registro
 export const getTipo = async (req, res) => {
     try {
-        const tipo = await TipoCSModel.findAll({
-            where: { ID_TIPO_CEDULA: req.params.ID_TIPO_CEDULA }
+        const tipo = await Tipo_clienteSModel.findAll({
+            where: { ID_TIPO_CLIENTE: req.params.ID_TIPO_CLIENTE }
         })
         res.json(tipo[0])
     } catch (error) {
@@ -28,7 +28,7 @@ export const getTipo = async (req, res) => {
 //Crear un registro
 export const createTipo = async (req, res) => {
     try {
-        await TipoCSModel.create(req.body)
+        await Tipo_clienteSModel.create(req.body)
         res.json({
             "message": "¡Registro creado correctamente!"
         })
@@ -39,8 +39,8 @@ export const createTipo = async (req, res) => {
 //Actualizar un registro
 export const updateTipo = async (req, res) => {
     try {
-        await TipoCSModel.update(req.body, {
-            where: { ID_TIPO_CEDULA: req.params.ID_TIPO_CEDULA }
+        await Tipo_clienteSModel.update(req.body, {
+            where: { ID_TIPO_CLIENTE: req.params.ID_TIPO_CLIENTE }
         })
         res.json({
             "message": "¡Registro actualizado correctamente!"
@@ -52,8 +52,8 @@ export const updateTipo = async (req, res) => {
 //Eliminar un registro
 export const deleteTipo = async (req, res) => {
     try {
-        await TipoCSModel.destroy({
-            where: { ID_TIPO_CEDULA: req.params.ID_TIPO_CEDULA }
+        await Tipo_clienteSModel.destroy({
+            where: { ID_TIPO_CLIENTE: req.params.ID_TIPO_CLIENTE }
         })
         res.json({
             "message": "¡Registro eliminado correctamente!"
