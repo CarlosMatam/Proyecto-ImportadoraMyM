@@ -23,6 +23,8 @@ import Facturacion from './routes/routes_Facturacion.js'
 import CompaniaRoutes from './routes/routes_Compania.js'
 import ProductoRoutes from './routes/routes_Producto.js'
 import TipoClienteRoutes from './routes/routes_TipoCliente.js'
+import CompaniaRoutes from './routes/routes_Compania.js'
+import ProductoRoutes from './routes/routes_Producto.js'
 
 const app = express()
 
@@ -48,6 +50,9 @@ app.use('/Facturacion', Facturacion)
 app.use('/Companias', CompaniaRoutes)
 app.use('/Productos', ProductoRoutes)
 app.use('/TiposCliente',TipoClienteRoutes)
+
+app.use('/Companias',CompaniaRoutes)
+app.use('/Productos',ProductoRoutes)
 
 try {
     await db.authenticate()

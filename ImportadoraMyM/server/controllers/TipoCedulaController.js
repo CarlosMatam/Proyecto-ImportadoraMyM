@@ -1,6 +1,6 @@
 //importamos el Modelo
 
-import {TipoCSModel,ClienteSModel} from "../models/Relaciones_cliente.js";
+import {TipoCSModel} from "../models/Relaciones_cliente.js";
 
 //** Métodos para el CRUD **/
 

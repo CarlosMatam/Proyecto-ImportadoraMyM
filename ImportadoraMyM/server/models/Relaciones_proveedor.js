@@ -15,5 +15,3 @@ ProveedorSModel.belongsTo(TipoCSModel, { foreignKey: "TIPO_CEDULA" });
 
 
 export { ProveedorSModel, Direccion_proveedorSModel, Telefono_proveedorSModel, TipoCSModel }
-
-

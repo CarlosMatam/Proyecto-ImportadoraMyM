@@ -1,3 +1,4 @@
+
 //importamos la conexión a la DB
 import db from "../database/db.js";
 //importamos sequelize
