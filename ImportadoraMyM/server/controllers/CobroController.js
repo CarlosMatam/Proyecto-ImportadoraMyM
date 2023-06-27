@@ -31,6 +31,13 @@ export const getCobro = async (req, res) => {
 //Crear un registro
 export const createCobro = async (req, res) => {
     try {
+        const { ID_CLIENTE, FECHA_INGRESO, MONTO, ESTADO } = req.body;
+        const cliente = await ClienteSModel.findOne({
+            where: { ID_CLIENTE }
+        });
+        if (!cliente) {
+            return res.json({ message: 'No se encontró un cliente con el ID proporcionado' });
+        }
         await CobroSModel.create(req.body)
         res.json({
             "message": "¡Registro creado correctamente!"

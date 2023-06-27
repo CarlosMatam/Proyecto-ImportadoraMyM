@@ -1,8 +1,7 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('BD_ImportadoraMyM', 'root', '1234', {
+const db = new Sequelize('BD_ImportadoraMyM', 'root', 'MortadelaJamonada$$$$', {
     host: 'localhost',
-    port: '3308',
     dialect: 'mysql'
 })
 

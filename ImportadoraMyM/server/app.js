@@ -18,6 +18,10 @@ import TelefonoTransporteRoutes from './routes/routes_TelefonoTransporte.js'
 import ClienteRoutes from './routes/routes_Cliente.js'
 import DireccionClienteRoutes from './routes/routes_DireccionCliente.js'
 import TelefonoClienteRoutes from './routes/routes_TelefonoCliente.js'
+import LoginRoutes from './routes/routes_Login.js'
+import Facturacion from './routes/routes_Facturacion.js'
+import CompaniaRoutes from './routes/routes_Compania.js'
+import ProductoRoutes from './routes/routes_Producto.js'
 import TipoClienteRoutes from './routes/routes_TipoCliente.js'
 
 const app = express()
@@ -32,16 +36,17 @@ app.use('/Zonas', ZonaRoutes)
 app.use('/DireccionesAgente', DireccionAgenteRoutes)
 app.use('/TelefonosAgente', TelefonoAgenteRoutes)
 app.use('/TipoCedula', TipoCedulaRoutes)
-
 app.use('/DireccionesProvee', DireccionProveedoresRoutes)
 app.use('/TelefonosProvee', TelefonoProveedoresRoutes)
-
 app.use('/Transportes',TransporteRoutes)
 app.use('/TelefonosTrans',TelefonoTransporteRoutes)
-
 app.use('/Clientes',ClienteRoutes)
 app.use('/DireccionesCliente',DireccionClienteRoutes)
-app.use('/TelefonosCliente',TelefonoClienteRoutes)
+app.use('/TelefonosCliente', TelefonoClienteRoutes)
+app.use('/Login', LoginRoutes)
+app.use('/Facturacion', Facturacion)
+app.use('/Companias', CompaniaRoutes)
+app.use('/Productos', ProductoRoutes)
 app.use('/TiposCliente',TipoClienteRoutes)
 
 try {

@@ -10,8 +10,34 @@ const URI3 = 'http://localhost:8000/DireccionesCliente/';
 const URI4 = 'http://localhost:8000/TelefonosCliente/';
 const URI5 = 'http://localhost:8000/TiposCliente/';
 
+const Validaciones = Yup.object().shape({
+    NOMBRE: Yup.string().required('Nombre es requerido'),
+    APELLIDO_PATERNO: Yup.string().required('Primer Apellido es requerido'),
+    APELLIDO_MATERNO: Yup.string().required('Segundo Apellido es requerido'),
+    ID_TIPO_CLIENTE: Yup.number()
+        .typeError('ID_TIPO_CLIENTE debe ser un número')
+        .required('ID_TIPO_CLIENTE es requerida'),
+    CORREO: Yup.string().required('CORREO es requerida'),
+    TIPO_CEDULA: Yup.string().required('TIPO_CEDULA es requerida'),
+    CEDULA: Yup.string().required('CEDULA es requerida'),
+    PROVINCIA: Yup.string().required('PROVINCIA es requerido'),
+    CANTON: Yup.string().required('CANTON es requerido'),
+    DISTRITO: Yup.string().required('DISTRITO es requerido'),
+    BARRIO: Yup.string().required('BARRIO señas es requerido'),
+    OTRAS_SENNAS: Yup.string().required('OTRAS_SENNAS señas es requerido'),
+    TELEFONO_1: Yup.string()
+        .matches(/^\d+$/, 'Teléfono 1 solo debe contener números')
+        .required('Teléfono 1 es requerido'),
+    TELEFONO_2: Yup.string()
+        .matches(/^\d+$/, 'Teléfono 2 solo debe contener números')
+        .required('Teléfono 2 es requerido'),
+    TELEFONO_3: Yup.string()
+        .matches(/^\d+$/, 'Teléfono 3 solo debe contener números')
+        .required('Teléfono 3 es requerido'),
+});
 
 const CrearCliente = () => {
+
     const [TiposCedulas, setCedula] = useState([]);
     useEffect(() => {
         getTiposCedulas();
@@ -36,7 +62,7 @@ const CrearCliente = () => {
 
     const navigate = useNavigate();
 
-    // Procedure to store data
+    // datos
     const store = async (values) => {
         const {
             NOMBRE,
@@ -96,7 +122,7 @@ const CrearCliente = () => {
                 ID_TIPO_CLIENTE: '',
                 CORREO: '',
                 TIPO_CEDULA: '',
-                CEDULA:'',
+                CEDULA: '',
                 PROVINCIA: '',
                 CANTON: '',
                 DISTRITO: '',
@@ -106,7 +132,7 @@ const CrearCliente = () => {
                 TELEFONO_2: '',
                 TELEFONO_3: '',
             }}
-            validationSchema={validationSchema}
+            validationSchema={Validaciones}
             onSubmit={store}
         >
             <Form>

@@ -71,15 +71,15 @@ const MostrarCliente = () => {
                                     <td> {Cliente.APELLIDO_PATERNO} </td>
                                     <td> {Cliente.APELLIDO_MATERNO} </td>
 
-                                    <td> {Cliente.TAB_DIRECCIONES_CLIENTES.PROVINCIA} </td>
-                                    <td> {Cliente.TAB_TELEFONOS_CLIENTES.TELEFONO_1} </td>
-                                    <td> {Cliente.TAB_TELEFONOS_CLIENTES.TELEFONO_2} </td>
+                                    <td> {Cliente.TAB_DIRECCIONES_CLIENTE.PROVINCIA} </td>
+                                    <td> {Cliente.TAB_TELEFONOS_CLIENTE.TELEFONO_1} </td>
+                                    <td> {Cliente.TAB_TELEFONOS_CLIENTE.TELEFONO_2} </td>
                                     <td> {Cliente.TAB_TIPOS_CLIENTE.NOMBRE} </td>
                                     <td> {Cliente.TAB_TIPOS_CEDULA.DESCRIPCION} </td>
                                     <td> {Cliente.CEDULA} </td>
                                     <td>
 
-                                        <Link to={`Clientes/edit/${Cliente.ID_CLIENTE}`} className='btn btn-info'>Editar</Link>
+                                        <Link to={`edit/${Cliente.ID_CLIENTE}`} className='btn btn-info'>Editar</Link>
                                         <button onClick={() => deleteCliente(Cliente.ID_CLIENTE)} className='btn btn-danger'>Eliminar</button>
                                     </td>
                                 </tr>

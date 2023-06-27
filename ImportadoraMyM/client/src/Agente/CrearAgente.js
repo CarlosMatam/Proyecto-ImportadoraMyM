@@ -9,11 +9,30 @@ const URI2 = 'http://localhost:8000/Zonas/';
 const URI3 = 'http://localhost:8000/DireccionesAgente/';
 const URI4 = 'http://localhost:8000/TelefonosAgente/';
 
-/*const URI = 'http://localhost:8000/Agentes/'
-const URI2 = 'http://localhost:8000/Zonas/'
-const URI3 = 'http://localhost:8000/Direcciones/'
-const URI4 = 'http://localhost:8000/Telefonos/'*/
-
+const Validaciones = Yup.object().shape({
+    NOMBRE: Yup.string().required('Nombre es requerido'),
+    APELLIDO_PATERNO: Yup.string().required('Primer Apellido es requerido'),
+    APELLIDO_MATERNO: Yup.string().required('Segundo Apellido es requerido'),
+    COMISION_POR_VENTA: Yup.number()
+        .typeError('Comisión debe ser un número')
+        .required('Comisión es requerida'),
+    ID_ZONA: Yup.string().required('Zona es requerida'),
+    IDENTIFICACION: Yup.string().required('Cédula es requerida'),
+    PROVINCIA: Yup.string().required('Provincia es requerida'),
+    CANTON: Yup.string().required('Cantón es requerido'),
+    DISTRITO: Yup.string().required('Distrito es requerido'),
+    BARRIO: Yup.string().required('Barrio es requerido'),
+    OTRAS_SENNAS: Yup.string().required('Otras señas es requerido'),
+    TELEFONO_1: Yup.string()
+        .matches(/^\d+$/, 'Teléfono 1 solo debe contener números')
+        .required('Teléfono 1 es requerido'),
+    TELEFONO_2: Yup.string()
+        .matches(/^\d+$/, 'Teléfono 2 solo debe contener números')
+        .required('Teléfono 2 es requerido'),
+    TELEFONO_3: Yup.string()
+        .matches(/^\d+$/, 'Teléfono 3 solo debe contener números')
+        .required('Teléfono 3 es requerido'),
+});
 
 const CrearAgente = () => {
     const [Zonas, setZona] = useState([]);
@@ -21,7 +40,7 @@ const CrearAgente = () => {
         getZonas();
     }, []);
 
-    // Procedure to fetch all Zonas
+    // consumir zonas
     const getZonas = async () => {
         const res = await axios.get(URI2);
         setZona(res.data);
@@ -29,7 +48,7 @@ const CrearAgente = () => {
 
     const navigate = useNavigate();
 
-    // Procedure to store data
+    // datos
     const store = async (values) => {
         const {
             NOMBRE,
@@ -73,9 +92,9 @@ const CrearAgente = () => {
             TELEFONO_2,
             TELEFONO_3,
             ID_AGENTE
-        })
+        });
 
-        navigate('/');
+        navigate('/Agentes');
     };
 
     return (
@@ -96,7 +115,7 @@ const CrearAgente = () => {
                 TELEFONO_2: '',
                 TELEFONO_3: '',
             }}
-            validationSchema={validationSchema}
+            validationSchema={Validaciones}
             onSubmit={store}
         >
             <Form>

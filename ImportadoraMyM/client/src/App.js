@@ -20,6 +20,11 @@ import MostrarTransporte from './Transporte/MostrarTransporte';
 import CrearCliente from './Cliente/CrearCliente';
 import EditarCliente from './Cliente/EditarCliente';
 import MostrarCliente from './Cliente/MostrarCliente';
+import Login from './Login/InicioSesion';
+import CrearFactura from './Facturacion/CrearFactura';
+import CrearProducto from './Producto/CrearProducto';
+import EditarProducto from './Producto/EditarProducto';
+import MostrarProducto from './Producto/MostrarProducto';
 
 //importamos el router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -31,6 +36,8 @@ function App() {
       <header className="App-header">
         <img src={"/"} className="App-logo" alt="logo" />
       </header>
+   
+      
       <BrowserRouter>
         <Routes>
           <Route path='/Cobros' element={<MostrarCobro />} />
@@ -51,11 +58,16 @@ function App() {
           <Route path='/Transportes/edit/:ID_TRANSPORTE' element={<EditarTransporte/>}/>
           <Route path='/Clientes' element={<MostrarCliente/>}/>
           <Route path='/Clientes/create' element={<CrearCliente/>}/>
-          <Route path='/Clientes/edit/:ID_CLIENTE' element={<EditarCliente/>}/>
+          <Route path='/Clientes/edit/:ID_CLIENTE' element={<EditarCliente />} /> 
+          <Route path='/Login' element={<Login />} />
+          <Route path='/Facturacion/create' element={<CrearFactura />} />
+          <Route path='/Productos/create' element={<CrearProducto />} />
+          <Route path='/Productos' element={<MostrarProducto />} />
+          {/*<Route path='/Productos/edit/:ID_PRODUCTO' element={<EditarProducto />} />*/} 
         </Routes>
       </BrowserRouter>
-
-    </div>
+        </div>
+     
   );
 }
 

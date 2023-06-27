@@ -1,3 +1,5 @@
+
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,32 +12,12 @@ const URI5 = 'http://localhost:8000/TiposCliente/';
 
 
 const EditarCliente = () => {
-    const [TiposCedulas, setTipo_cedula] = useState([]);
-    useEffect(() => {
-        getTiposCedulas();
-    }, []);
-
-    // Procedure to fetch all Zonas
-    const getTiposCedulas = async () => {
-        const res = await axios.get(URI2);
-        setTipo_cedula(res.data);
-    };
-
-    const [TiposClientes, setTipo_Cliente] = useState([]);
-    useEffect(() => {
-        getTiposClientes();
-    }, []);
-
-    // Procedure to fetch all Zonas
-    const getTiposClientes = async () => {
-        const res = await axios.get(URI5);
-        setTipo_Cliente(res.data);
-    };
-
     const [NOMBRE, setNombre] = useState('')
     const [APELLIDO_PATERNO, setApellido_paterno] = useState('')
     const [APELLIDO_MATERNO, setApellido_materno] = useState('')
+    const [ID_TIPO_CLIENTE, setId_tipo_cliente] = useState('')
     const [CORREO, setCorreo] = useState('')
+    const [TIPO_CEDULA, setTipo_cedula] = useState('')
     const [CEDULA, setCedula] = useState('')
 
 
@@ -61,9 +43,9 @@ const EditarCliente = () => {
             NOMBRE: NOMBRE,
             APELLIDO_PATERNO: APELLIDO_PATERNO,
             APELLIDO_MATERNO: APELLIDO_MATERNO,
-            TiposClientes: TiposClientes,
+            ID_TIPO_CLIENTE: ID_TIPO_CLIENTE,
             CORREO: CORREO,
-            TiposCedulas: TiposCedulas,
+            TIPO_CEDULA: TIPO_CEDULA,
             CEDULA: CEDULA,
         });
 
@@ -150,42 +132,40 @@ const EditarCliente = () => {
                     />
                 </div>
 
-                <div className="col-md-2">
-                    <label className="form-label">Tipo de Cliente</label>
-                    <Field as="select" className="form-control" name="ID_TIPO_CLIENTE" required>
-                        <option value="">Seleccionar Tipo de Cliente</option>
-                        {TiposClientes.map((option) => (
-                            <option key={option.ID_TIPO_CLIENTE} value={option.ID_TIPO_CLIENTE}>
-                                {option.NOMBRE}
-                            </option>
-                        ))}
-                    </Field>
-                    <ErrorMessage
-                        name="ID_TIPO_CLIENTE"
-                        component="div"
-                        className="text-danger"
-                    />
-                </div>
 
-                <div className="col-md-2">
-                    <label className="form-label">Tipo de Cédula</label>
-                    <Field as="select" className="form-control" name="TIPO_CEDULA" required>
-                        <option value="">Seleccionar Tipo de Cédula</option>
-                        {TiposCedulas.map((option) => (
-                            <option key={option.ID_TIPO_CEDULA} value={option.ID_TIPO_CEDULA}>
-                                {option.DESCRIPCION}
-                            </option>
-                        ))}
-                    </Field>
-                    <ErrorMessage
-                        name="TIPO_CEDULA"
-                        component="div"
-                        className="text-danger"
+
+                <div className='mb-3'>
+                    <label className='form-label'>ID_TIPO_CLIENTE</label>
+                    <textarea
+                        value={ID_TIPO_CLIENTE}
+                        onChange={(e) => setId_tipo_cliente(e.target.value)}
+                        type="text"
+                        className='form-control'
                     />
                 </div>
 
                 <div className='mb-3'>
-                    <label className='form-label'>Cédula</label>
+                    <label className='form-label'>CORREO</label>
+                    <textarea
+                        value={CORREO}
+                        onChange={(e) => setCorreo(e.target.value)}
+                        type="text"
+                        className='form-control'
+                    />
+                </div>
+
+                <div className='mb-3'>
+                    <label className='form-label'>TIPO_CEDULA</label>
+                    <textarea
+                        value={TIPO_CEDULA}
+                        onChange={(e) => setTipo_cedula(e.target.value)}
+                        type="text"
+                        className='form-control'
+                    />
+                </div>
+
+                <div className='mb-3'>
+                    <label className='form-label'>CEDULA</label>
                     <textarea
                         value={CEDULA}
                         onChange={(e) => setCedula(e.target.value)}

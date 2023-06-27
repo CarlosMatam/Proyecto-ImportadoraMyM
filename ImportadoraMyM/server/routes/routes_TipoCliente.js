@@ -1,3 +1,5 @@
+
+
 import express from 'express'
 import { getAllTipo, getTipo, createTipo, updateTipo, deleteTipo } from '../controllers/Tipo_clienteController.js'
 const router = express.Router()
