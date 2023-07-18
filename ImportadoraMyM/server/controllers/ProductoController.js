@@ -1,10 +1,10 @@
-import { ProductoSModel, CompaniaSModel, ProveedorSModel } from "../models/Relaciones_producto.js";
+import { ProductoSModel, CompaniaSModel, ProveedorSModel, CabysSModel } from "../models/Relaciones_producto.js";
 
 export const getAllProducto = async (req, res) => {
     try {
         const producto = await ProductoSModel.findAll({
             include:
-                [CompaniaSModel, ProveedorSModel]
+                [CompaniaSModel, ProveedorSModel, CabysSModel]
         })
         res.json(producto)
     } catch (error) {
@@ -25,17 +25,23 @@ export const getProducto = async (req, res) => {
 //Crear un registro
 export const createProducto = async (req, res) => {
     try {
-        const { PROVEEDOR, COMPANIA } = req.body;
+        const { PROVEEDOR, COMPANIA, CABYS } = req.body;
         const producto = await ProductoSModel.findOne({
             where: { PROVEEDOR }
         });
         if (!producto) {
             return res.json({ message: 'No se encontró un proveedor con el ID proporcionado' });
         }
-        const producto2 = await ProductoSModel.findOne({
+        const producto2=await ProductoSModel.findOne({
+            where:{CABYS}
+        })
+        if(!producto2){
+            return res.json({ message: 'No se encontró un CABYS con el ID proporcionado' });
+        }
+        const producto3 = await ProductoSModel.findOne({
             where: { COMPANIA }
         });
-        if (!producto2) {
+        if (!producto3) {
             return res.json({ message: 'No se encontró una compañía con el ID proporcionado' });
         }
         await ProductoSModel.create(req.body)

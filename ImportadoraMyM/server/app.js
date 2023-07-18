@@ -25,6 +25,7 @@ import ProductoRoutes from './routes/routes_Producto.js'
 import TipoClienteRoutes from './routes/routes_TipoCliente.js'
 import CompaniaRoutes from './routes/routes_Compania.js'
 import ProductoRoutes from './routes/routes_Producto.js'
+import CabysRoutes from './routes/routes_Cabys.js'
 
 const app = express()
 
@@ -50,9 +51,7 @@ app.use('/Facturacion', Facturacion)
 app.use('/Companias', CompaniaRoutes)
 app.use('/Productos', ProductoRoutes)
 app.use('/TiposCliente',TipoClienteRoutes)
-
-app.use('/Companias',CompaniaRoutes)
-app.use('/Productos',ProductoRoutes)
+app.use('/Cabys',CabysRoutes)
 
 try {
     await db.authenticate()
@@ -60,8 +59,6 @@ try {
 } catch (error) {
     console.log(`El error de conexión es: ${error}`)
 }
-
-
 
 app.listen(8000, () => {
     console.log('Server corriendo en http://localhost:8000/')
