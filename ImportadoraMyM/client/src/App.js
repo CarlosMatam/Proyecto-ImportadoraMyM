@@ -1,5 +1,8 @@
 import logo from './logo.jpeg';
 import './App.css';
+import './CSS/EstilosMostrar.css'
+import './CSS/EstilosEditar.css'
+import './CSS/EstilosCrear.css'
 
 //importamos los componentes
 import MostrarAG from './Agente/MostrarAgente'; 
