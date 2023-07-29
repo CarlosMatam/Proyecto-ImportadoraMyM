@@ -2,6 +2,7 @@ import '../CSS/EstilosCrear.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
 
 
 const URI = 'http://localhost:8000/Transportes/'
@@ -38,6 +39,7 @@ const CrearTransporte = () => {
     return (
 
         <form className="row g-3" onSubmit={store}  >
+            <Navbar />
             <div className="col-md-6">
                 <label className="form-label">Nombre</label>
                 <input

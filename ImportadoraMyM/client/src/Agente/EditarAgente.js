@@ -2,6 +2,7 @@ import '../CSS/EstilosEditar.css'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from '../Components/Navbar';
 
 const URI = 'http://localhost:8000/Agentes/'
 const URI2 = 'http://localhost:8000/Zonas/'
@@ -96,6 +97,7 @@ const EditarAgente = () => {
 
     return (
         <div>
+            <Navbar />
             <h3>Edit POST</h3>
             <form onSubmit={update}>
                 <div className='mb-3'>

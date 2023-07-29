@@ -2,6 +2,7 @@ import '../CSS/EstilosMostrar.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
 
 const URI = 'http://localhost:8000/Cabys/'
 
@@ -39,6 +40,7 @@ const MostrarCabys = () => {
 
     return (
         <div className='container-fluid'>
+            <Navbar />
             <label>Buscar por descripción de bien o servicio: </label>
             <input type='text' placeholder='Digite la descripción' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>

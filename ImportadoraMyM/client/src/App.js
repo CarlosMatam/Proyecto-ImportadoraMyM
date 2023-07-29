@@ -29,6 +29,7 @@ import CrearProducto from './Producto/CrearProducto';
 import EditarProducto from './Producto/EditarProducto';
 import MostrarProducto from './Producto/MostrarProducto';
 import MostrarCabys from './Cabys/MostrarCabys';
+import Navbar from './Components/Navbar';
 
 //importamos el router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -43,6 +44,7 @@ function App() {
    
       
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path='/Cobros' element={<MostrarCobro />} />
           <Route path='/Cobros/create' element={<CrearCobro />} />

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Formik, Field, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import Navbar from '../Components/Navbar';
 
 
 
@@ -60,6 +61,7 @@ const CrearFactura = () => {
         >
             {({ values }) => (
                 <form>
+                    <Navbar />
                     <div className="form-group">
                         <label htmlFor="ID_COMPANIA">Compañía</label>
                         <Field

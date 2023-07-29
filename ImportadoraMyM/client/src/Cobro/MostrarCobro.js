@@ -2,6 +2,7 @@ import '../CSS/EstilosMostrar.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
 
 const URI = 'http://localhost:8000/Cobros/'
 
@@ -45,7 +46,7 @@ const MostrarCobro = () => {
         
 
         <div className='container'>
-            
+            <Navbar />            
             <div className='row'>
                 <div className='col'>
                     <Link to="/Cobros/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>

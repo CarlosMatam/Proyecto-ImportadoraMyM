@@ -1,0 +1,24 @@
+nav {
+    background-color: #E5F4E3;
+    padding: 10px;
+}
+  
+li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:25px;
+}
+
+Link{
+    font-family: serif;
+    color: #fff;
+    font-size:14px;
+    background-color: #817ADA;
+    font-weight: bold;
+}
