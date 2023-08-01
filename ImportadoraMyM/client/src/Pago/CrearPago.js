@@ -1,6 +1,8 @@
+import '../CSS/EstilosCrear.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
 
 
 const URI = 'http://localhost:8000/Pagos/'
@@ -36,6 +38,7 @@ const CrearPago = () => {
     return (
        
         <form className="row g-3" onSubmit={store}  >
+            <Navbar />
                 <div class="col-md-6">
                     <label  className="form-label">Fecha de ingreso</label>
                     <input

@@ -1,6 +1,8 @@
+import '../CSS/EstilosEditar.css'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from '../Components/Navbar';
 
 
 const URI = 'http://localhost:8000/Proveedores/'
@@ -94,6 +96,7 @@ const EditarProveedor = () => {
 
     return (
         <div>
+            <Navbar />
             <h3>Edit POST</h3>
             <form onSubmit={update}>
                 <div className="col-md-6">

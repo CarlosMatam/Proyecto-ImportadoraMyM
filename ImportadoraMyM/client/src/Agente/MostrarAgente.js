@@ -1,6 +1,8 @@
+import '../CSS/EstilosMostrar.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
 
 const URI = 'http://localhost:8000/Agentes/'
 
@@ -44,6 +46,7 @@ const MostrarAG = () => {
 
     return (
         <div className='container-fluid'>
+            <Navbar />
             <label>Buscar por nombre: </label>
             <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>

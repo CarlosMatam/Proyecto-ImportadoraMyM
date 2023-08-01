@@ -1,8 +1,9 @@
-/*
-
+import '../CSS/EstilosEditar.css'
 import axios from "axios";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from '../Components/Navbar';
 
 const URI = 'http://localhost:8000/Productos/';
 const URI2 = 'http://localhost:8000/Companias/';
@@ -46,8 +47,8 @@ const EditarProducto = () => {
     const navigate = useNavigate()
 
     const { ID_PRODUCTO } = useParams()
-    const { COMPANIA } = useParams()
-    const { PROVEEDOR } = useParams()
+    const { COMPANIA} = useState('')
+    const { PROVEEDOR} = useState('')
 
 
     //procedimiento para actualizar
@@ -55,10 +56,10 @@ const EditarProducto = () => {
         e.preventDefault();
 
         // Actualizar el agente
-        await axios.put(URI + ID_CLIENTE, {
+        await axios.put(URI + ID_PRODUCTO, {
             NOMBRE: NOMBRE,
             DESCRIPCION: DESCRIPCION,
-            Proveedores: Proveedores,
+            Proveedores:Proveedores,
             PRECIO: PRECIO,
             DESCUENTO: DESCUENTO,
             PORCENTAJE_GANANCIA_1: PORCENTAJE_GANANCIA_1,
@@ -66,7 +67,7 @@ const EditarProducto = () => {
             PORCENTAJE_GANANCIA_3: PORCENTAJE_GANANCIA_3,
             EXISTENCIA_ACTUAL: EXISTENCIA_ACTUAL,
             CABYS: CABYS,
-            Companias: Companias,
+            Companias:Companias,
             FECHA_INGRESO: FECHA_INGRESO,
         });
 
@@ -99,9 +100,10 @@ const EditarProducto = () => {
     }
 
     return (
-        <div>
+        <Formik>
+        <Navbar />
             <h3>Edit POST</h3>
-            <form onSubmit={update}>
+            <Form onSubmit={update}>
                 <div className='mb-3'>
                     <label className='form-label'>Nombre</label>
                     <input
@@ -124,7 +126,7 @@ const EditarProducto = () => {
                 <div className="col-md-2">
                     <label className="form-label">Proveedor</label>
                     <Field as="select" className="form-control" name="PROVEEDOR" required>
-                        <option value="">Seleccionar Proveedor</option>
+                        <option value={PROVEEDOR}>Seleccionar Proveedor</option>
                         {Proveedores.map((option) => (
                             <option key={option.ID_PROVEEDOR} value={option.ID_PROVEEDOR}>
                                 {option.NOMBRE}
@@ -230,13 +232,11 @@ const EditarProducto = () => {
                 </div>
 
                 <button type="submit" className="btn btn-primary">Actualizar</button>
-            </form>
-        </div>
+            </Form>
+        </Formik>
     )
 
 
 }
 
 export default EditarProducto
-
-*/

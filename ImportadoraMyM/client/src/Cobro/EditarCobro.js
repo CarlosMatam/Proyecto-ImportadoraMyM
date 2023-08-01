@@ -1,6 +1,8 @@
+import '../CSS/EstilosEditar.css'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from '../Components/Navbar';
 
 const URI = 'http://localhost:8000/Cobros/'
 
@@ -38,8 +40,9 @@ const EditarCobro = () => {
 
     return (
         <div>
+            <Navbar />
             <h3>Edit POST</h3>
-            <form onSubmit={update}>
+            <form onSubmit={update} className="container">
             <div class="col-md-6">
                     <label  className="form-label">Fecha de ingreso</label>
                     <input
@@ -51,7 +54,7 @@ const EditarCobro = () => {
                    
                 </div>
             <div className="col-md-6">
-                    <label class="form-label">Monto</label>
+                    <label className="form-label">Monto</label>
                     <input
                         value={MONTO}
                         onChange={(e) => setMonto(e.target.value)}

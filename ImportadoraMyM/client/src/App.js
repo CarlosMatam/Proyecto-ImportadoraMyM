@@ -26,13 +26,6 @@ import CrearFactura from './Facturacion/CrearFactura';
 import CrearProducto from './Producto/CrearProducto';
 import EditarProducto from './Producto/EditarProducto';
 import MostrarProducto from './Producto/MostrarProducto';
-import MostrarF from './Facturacion/MostrarFactura';
-import EditarFactura from './Facturacion/EditarFactura';
-import CrearCompra from './Compras/CrearCompras';
-import MostrarCompras from './Compras/MostrarCompras';
-import EditarCompra from './Compras/EditarCompra';
-
-
 
 //importamos el router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -73,10 +66,7 @@ function App() {
           <Route path='/Compras/create' element={<CrearCompra />} />
           <Route path='/Productos/create' element={<CrearProducto />} />
           <Route path='/Productos' element={<MostrarProducto />} />
-          <Route path='/Compras' element={<MostrarCompras />} />
-          <Route path='/Facturacion' element={<MostrarF />} />
-          <Route path='/Facturacion/edit/:ID_FACTURA' element={<EditarFactura />} /> 
-          <Route path='/Compras/edit/:NUM_DOCUMENTO' element={<EditarCompra />} /> 
+          <Route path='/Cabys' element={<MostrarCabys />} />
           {/*<Route path='/Productos/edit/:ID_PRODUCTO' element={<EditarProducto />} />*/} 
         </Routes>
       </BrowserRouter>

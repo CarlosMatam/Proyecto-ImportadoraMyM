@@ -1,12 +1,15 @@
+import '../CSS/EstilosCrear.css'
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import Navbar from '../Components/Navbar';
 
 const URI = 'http://localhost:8000/Productos/';
 const URI2 = 'http://localhost:8000/Companias/';
 const URI3 = 'http://localhost:8000/Proveedores/';
+const URI4='http://localhost:8000/Cabys';
 
 const Validaciones = Yup.object().shape({
     ID_PRODUCTO: Yup.string().required('Codigo es requerido'),
@@ -49,6 +52,17 @@ const CrearProducto = () => {
     const getProveedores = async () => {
         const res = await axios.get(URI3);
         setProveedor(res.data);
+    };
+
+    const [Cabys, setCabys] = useState([]);
+    useEffect(() => {
+        getCabys();
+    }, []);
+
+
+    const getCabys = async () => {
+        const res = await axios.get(URI4);
+        setCabys(res.data);
     };
 
     const navigate = useNavigate();
@@ -112,7 +126,7 @@ const CrearProducto = () => {
             onSubmit={store}
         >
             <Form>
-
+                <Navbar />
                 <div className="col-md-4">
                     <label className="form-label">Codigo</label>
                     <Field
@@ -259,14 +273,16 @@ const CrearProducto = () => {
                 </div>
                 <div className="col-md-2">
                     <label className="form-label">CABYS</label>
-                    <Field
-                        type="text"
-                        className="form-control"
-                        name="CABYS"
-                        required
-                    />
+                    <Field as="select" className="form-control" name="CABYS" required>
+                        <option value="">Seleccionar CABYS</option>
+                        {Cabys.map((option) => (
+                            <option key={option.ID_CABYS_MYM} value={option.ID_CABYS_MYM}>
+                                {option.DESCRIPCION_BIEN_SERVICIO}
+                            </option>
+                        ))}
+                    </Field>
                     <ErrorMessage
-                        name="PORCENTAJE_GANANCIA_1"
+                        name="CABYS"
                         component="div"
                         className="text-danger"
                     />

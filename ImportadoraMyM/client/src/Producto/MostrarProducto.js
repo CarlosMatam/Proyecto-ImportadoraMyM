@@ -1,6 +1,8 @@
+import '../CSS/EstilosMostrar.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../Components/Navbar'
 
 const URI = 'http://localhost:8000/Productos/'
 
@@ -44,11 +46,12 @@ const MostrarProducto = () => {
 
     return (
         <div className='container-fluid'>
+            <Navbar />
             <label>Buscar por nombre: </label>
             <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
                 <div className='col'>
-                    <Link to="/Clientes/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
+                    <Link to="/Productos/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
                     <table className='table'>
                         <thead className='table-primary'>
                             <tr>
@@ -72,8 +75,8 @@ const MostrarProducto = () => {
                                 <tr key={Producto.ID_PRODUCTO}>
                                     <td> {Producto.NOMBRE} </td>
                                     <td> {Producto.DESCRIPCION} </td>
-                                    <td> {Producto.TAB_PROVEEDORES.NOMBRE} </td>
-                                    <td> {Producto.TAB_COMPANIAS.NOMBRE} </td>
+                                    <td> {Producto.PROVEEDOR} </td>
+                                    <td> {Producto.COMPANIA} </td>
                                     <td> {Producto.PRECIO} </td>
                                     <td> {Producto.DESCUENTO} </td>
                                     <td> {Producto.PORCENTAJE_GANANCIA_1} </td>

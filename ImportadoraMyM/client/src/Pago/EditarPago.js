@@ -1,6 +1,8 @@
+import '../CSS/EstilosEditar.css'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from '../Components/Navbar';
 
 const URI = 'http://localhost:8000/Pagos/'
 
@@ -38,6 +40,7 @@ const EditarPago = () => {
 
     return (
         <div>
+            <Navbar />
             <h3>Edit POST</h3>
             <form onSubmit={update}>
             <div class="col-md-6">

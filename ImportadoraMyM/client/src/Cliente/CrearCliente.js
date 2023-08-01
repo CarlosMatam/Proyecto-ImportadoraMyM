@@ -1,8 +1,10 @@
+import '../CSS/EstilosCrear.css'
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import Navbar from '../Components/Navbar';
 
 const URI = 'http://localhost:8000/Clientes/';
 const URI2 = 'http://localhost:8000/TipoCedula/';
@@ -136,6 +138,7 @@ const CrearCliente = () => {
             onSubmit={store}
         >
             <Form>
+                <Navbar />
                 <div className="col-md-4">
                     <label className="form-label">Nombre</label>
                     <Field

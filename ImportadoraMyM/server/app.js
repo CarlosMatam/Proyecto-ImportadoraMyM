@@ -63,8 +63,6 @@ try {
     console.log(`El error de conexión es: ${error}`)
 }
 
-
-
 app.listen(8000, () => {
     console.log('Server corriendo en http://localhost:8000/')
 })
