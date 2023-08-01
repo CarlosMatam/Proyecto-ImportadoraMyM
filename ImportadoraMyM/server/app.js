@@ -23,8 +23,6 @@ import Facturacion from './routes/routes_Facturacion.js'
 import CompaniaRoutes from './routes/routes_Compania.js'
 import ProductoRoutes from './routes/routes_Producto.js'
 import TipoClienteRoutes from './routes/routes_TipoCliente.js'
-import CompaniaRoutes from './routes/routes_Compania.js'
-import ProductoRoutes from './routes/routes_Producto.js'
 import CabysRoutes from './routes/routes_Cabys.js'
 
 const app = express()

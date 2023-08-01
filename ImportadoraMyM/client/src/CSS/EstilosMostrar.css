@@ -2,12 +2,12 @@
     width:100%;
     max-width:1200px;
     margin:0 auto;
-    padding:25px;
+    padding:10px;
 }
 th{
     font-family: serif;
     color:#ffffff;
-    font-size:24px;
+    font-size:16px;
     background-color: #988FC6;
 }
 td{
@@ -25,12 +25,12 @@ Link{
 button{
     font-family: serif;
     color: #ffffff;
-    font-size:16px;
+    font-size:14px;
     font-weight: bold;
 }
 label{
     font-family: serif;
     color: #000;
-    font-size:18px;
+    font-size:14px;
     background-color: #E5F4E3;
 }
