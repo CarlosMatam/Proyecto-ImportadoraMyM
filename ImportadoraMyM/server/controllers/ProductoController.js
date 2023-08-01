@@ -88,4 +88,44 @@ export const deleteProducto = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+    
+};
+
+// Actualizar existencia de productos después de crear una factura
+export const actualizarExistenciaProductos = async (detallesFactura) => {
+    try {
+        await Promise.all(
+            detallesFactura.map(async (detalle) => {
+                const producto = await ProductoSModel.findOne({
+                    where: { ID_PRODUCTO: detalle.ID_PRODUCTO },
+                });
+
+                if (producto) {
+                    const nuevaExistencia = producto.EXISTENCIA_ACTUAL - detalle.CANTIDAD;
+                    await producto.update({ EXISTENCIA_ACTUAL: nuevaExistencia });
+                }
+            })
+        );
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+//quitar esto mas adelante, porque se crearon 2 const completamente iguales sin darme cuenta
+export const autocompleteProducto = async (req, res) => {
+    try {
+        const { ID_PRODUCTO } = req.params;
+
+        const producto = await ProductoSModel.findOne({
+            where: { ID_PRODUCTO }
+        });
+
+        if (!producto) {
+            return res.json({ message: 'No se encontró un producto con el código proporcionado' });
+        }
+
+        res.json(producto);
+    } catch (error) {
+        res.json({ message: error.message });
+    }
 };

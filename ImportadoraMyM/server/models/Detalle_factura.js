@@ -8,7 +8,6 @@ const DetalleFacturaSModel = db.define('TAB_DETALLE_FACTURAS', {
     ID_FACTURA: { type: DataTypes.INTEGER },
     ID_PRODUCTO: { type: DataTypes.INTEGER },
     CANTIDAD: { type: DataTypes.INTEGER },
-    ID_AGENTE: { type: DataTypes.INTEGER },
     SUBTOTAL: { type: DataTypes.DECIMAL },
     DESCUENTO: { type: DataTypes.NUMBER },
 

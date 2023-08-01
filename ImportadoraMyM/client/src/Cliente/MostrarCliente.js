@@ -70,7 +70,6 @@ const MostrarCliente = () => {
                                     <td> {Cliente.NOMBRE} </td>
                                     <td> {Cliente.APELLIDO_PATERNO} </td>
                                     <td> {Cliente.APELLIDO_MATERNO} </td>
-
                                     <td> {Cliente.TAB_DIRECCIONES_CLIENTE.PROVINCIA} </td>
                                     <td> {Cliente.TAB_TELEFONOS_CLIENTE.TELEFONO_1} </td>
                                     <td> {Cliente.TAB_TELEFONOS_CLIENTE.TELEFONO_2} </td>

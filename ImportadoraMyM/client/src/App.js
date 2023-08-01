@@ -1,6 +1,7 @@
 import logo from './logo.jpeg';
 import './App.css';
 
+
 //importamos los componentes
 import MostrarAG from './Agente/MostrarAgente'; 
 import CrearAgente from './Agente/CrearAgente'; 
@@ -25,6 +26,13 @@ import CrearFactura from './Facturacion/CrearFactura';
 import CrearProducto from './Producto/CrearProducto';
 import EditarProducto from './Producto/EditarProducto';
 import MostrarProducto from './Producto/MostrarProducto';
+import MostrarF from './Facturacion/MostrarFactura';
+import EditarFactura from './Facturacion/EditarFactura';
+import CrearCompra from './Compras/CrearCompras';
+import MostrarCompras from './Compras/MostrarCompras';
+import EditarCompra from './Compras/EditarCompra';
+
+
 
 //importamos el router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -40,6 +48,7 @@ function App() {
       
       <BrowserRouter>
         <Routes>
+          
           <Route path='/Cobros' element={<MostrarCobro />} />
           <Route path='/Cobros/create' element={<CrearCobro />} />
           <Route path='/Cobros/edit/:ID_COBRO' element={<EditarCobro />} />
@@ -61,8 +70,13 @@ function App() {
           <Route path='/Clientes/edit/:ID_CLIENTE' element={<EditarCliente />} /> 
           <Route path='/Login' element={<Login />} />
           <Route path='/Facturacion/create' element={<CrearFactura />} />
+          <Route path='/Compras/create' element={<CrearCompra />} />
           <Route path='/Productos/create' element={<CrearProducto />} />
           <Route path='/Productos' element={<MostrarProducto />} />
+          <Route path='/Compras' element={<MostrarCompras />} />
+          <Route path='/Facturacion' element={<MostrarF />} />
+          <Route path='/Facturacion/edit/:ID_FACTURA' element={<EditarFactura />} /> 
+          <Route path='/Compras/edit/:NUM_DOCUMENTO' element={<EditarCompra />} /> 
           {/*<Route path='/Productos/edit/:ID_PRODUCTO' element={<EditarProducto />} />*/} 
         </Routes>
       </BrowserRouter>

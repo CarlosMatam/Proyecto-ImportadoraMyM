@@ -3,8 +3,8 @@ import db from "../database/db.js";
 //importamos sequelize
 import { DataTypes } from "sequelize";
 
-const TipoFacturaSModel = db.define('TIPO_FACTURA', {
-    id_factura: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+const TipoFacturaSModel = db.define('TAB_TIPOS_FACTURAS', {
+    ID_TIPO_FACTURA: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     nombre: { type: DataTypes.STRING },
 
 

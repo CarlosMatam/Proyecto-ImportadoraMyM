@@ -21,10 +21,11 @@ import TelefonoClienteRoutes from './routes/routes_TelefonoCliente.js'
 import LoginRoutes from './routes/routes_Login.js'
 import Facturacion from './routes/routes_Facturacion.js'
 import CompaniaRoutes from './routes/routes_Compania.js'
-import ProductoRoutes from './routes/routes_Producto.js'
 import TipoClienteRoutes from './routes/routes_TipoCliente.js'
-import CompaniaRoutes from './routes/routes_Compania.js'
 import ProductoRoutes from './routes/routes_Producto.js'
+import TipoFacturasRoutes from './routes/routes_TipoFactura.js'
+import ComprasRoutes from './routes/routes_Compra.js'
+import BodegaRoutes from './routes/routes_Bodega.js'
 
 const app = express()
 
@@ -50,9 +51,10 @@ app.use('/Facturacion', Facturacion)
 app.use('/Companias', CompaniaRoutes)
 app.use('/Productos', ProductoRoutes)
 app.use('/TiposCliente',TipoClienteRoutes)
-
-app.use('/Companias',CompaniaRoutes)
-app.use('/Productos',ProductoRoutes)
+app.use('/Productos', ProductoRoutes)
+app.use('/TiposFactura', TipoFacturasRoutes)
+app.use('/Compras', ComprasRoutes)
+app.use('/Bodegas', BodegaRoutes)
 
 try {
     await db.authenticate()
