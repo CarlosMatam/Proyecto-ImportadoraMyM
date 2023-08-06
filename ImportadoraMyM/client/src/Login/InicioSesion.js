@@ -1,8 +1,10 @@
 import axios from 'axios';
-import {useState} from 'react'
+import {useState} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBContainer } from 'cdbreact';
+
 
 const URI = 'http://localhost:8000/Login/';
 
@@ -45,7 +47,12 @@ const Login = () => {
             onSubmit={store}
         >
             <Form>
-                <h3>Iniciar Sesion</h3>
+                <CDBContainer>
+                <CDBCard style={{ width: '30rem' }}>
+                <CDBCardBody className="mx-4">
+                    <div>
+                        <h3 className="h3">Iniciar Sesión</h3>
+                    </div>
                 <div className="mb-3">
                     <label className="form-label">Usuario:</label>
                     <Field
@@ -77,14 +84,18 @@ const Login = () => {
                         className="text-danger"
                     />
                 </div>
-               
+               <div>
+               <Link to="/Login/OlvidoContrasenna" className='d-inline p-0'>¿Olvidó su contraseña?</Link>
+               </div>
                 {/* Mostrar el mensaje de error */}
                 <p className="text-danger">{errorMessage}</p>
                
-                <button type="submit" className="btn btn-primary">
-                    Iniciar Sesion
-                    </button>
-                
+                <CDBBtn type="submit" className="btn btn-primary">
+                    Iniciar Sesión
+                </CDBBtn>
+                </CDBCardBody>
+                </CDBCard>
+                </CDBContainer>
             </Form>
         </Formik>
     );

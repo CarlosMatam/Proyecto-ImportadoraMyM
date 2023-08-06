@@ -31,7 +31,8 @@ import EditarFactura from './Facturacion/EditarFactura';
 import CrearCompra from './Compras/CrearCompras';
 import MostrarCompras from './Compras/MostrarCompras';
 import EditarCompra from './Compras/EditarCompra';
-
+import MostrarCabys from './Cabys/MostrarCabys';
+import OlvidoContrasenna from './Login/OlvidoContrasenna';
 
 
 //importamos el router
@@ -78,6 +79,7 @@ function App() {
           <Route path='/Facturacion/edit/:ID_FACTURA' element={<EditarFactura />} /> 
           <Route path='/Compras/edit/:NUM_DOCUMENTO' element={<EditarCompra />} /> 
           <Route path='/Cabys' element={<MostrarCabys />} />
+          <Route path='/Login/OlvidoContrasenna' element={<OlvidoContrasenna />} />
           {/*<Route path='/Productos/edit/:ID_PRODUCTO' element={<EditarProducto />} />*/} 
         </Routes>
       </BrowserRouter>
