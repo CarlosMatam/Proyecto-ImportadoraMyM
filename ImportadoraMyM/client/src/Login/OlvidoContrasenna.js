@@ -1,5 +1,6 @@
 import React from 'react';
 import { CDBCard, CDBCardBody, CDBContainer } from 'cdbreact';
+import '../CSS/Login.css'
 
 const OlvidoContrasenna = () => {
   return (
