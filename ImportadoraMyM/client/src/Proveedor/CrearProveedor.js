@@ -1,8 +1,9 @@
-import '../CSS/EstilosCrear.css'
+
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Navbar from '../Components/Navbar'
+import Sidebar from '../Components/Sidebar';
+
 
 const URI = 'http://localhost:8000/Proveedores/'
 
@@ -32,7 +33,7 @@ const CrearProveedor = () => {
     const [CORREO, setCorreo] = useState('')
     const [TIPO_CEDULA, setTipo_cedula] = useState('')
     const [CEDULA, setCedula] = useState('')
-    
+
     const [ID_TIPO_CEDULA] = useState('')
 
     const [PROVINCIA, setProvincia] = useState('')
@@ -68,10 +69,14 @@ const CrearProveedor = () => {
     }
 
     return (
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+            <div style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+            <form style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '5px', background: 'white' }} onSubmit={store}  >
 
-        <form className="row g-3" onSubmit={store}  >
-            <Navbar />
-            <div className="col-md-6">
+                    <div className="row">
+                        <div className="col-md-3 mb-4">
                 <label className="form-label">Nombre</label>
                 <input
                     value={NOMBRE}
@@ -81,7 +86,7 @@ const CrearProveedor = () => {
                     required />
 
             </div>
-            <div className="col-md-6">
+                        <div className="col-md-3 mb-4">
                 <label className="form-label">CORREO </label>
                 <input
                     value={CORREO}
@@ -91,14 +96,18 @@ const CrearProveedor = () => {
                     required />
             </div>
 
-            <select value={TIPO_CEDULA} onChange={(e) => setTipo_cedula(e.target.value)}>
-                {Tipos.map((option) => (
-                    <option key={option.ID_TIPO_CEDULA} value={option.ID_TIPO_CEDULA} >{option.DESCRIPCION}</option>
-                ))}
-            </select>
+                        <div className="col-md-4 mb-4">
+                            <label className="form-label">TIPO CEDULA </label>
+                            <select style={{ marginLeft: '15px' }} value={TIPO_CEDULA} onChange={(e) => setTipo_cedula(e.target.value)}>
+                                {Tipos.map((option) => (
+                                    <option key={option.ID_TIPO_CEDULA} value={option.ID_TIPO_CEDULA} >{option.DESCRIPCION}</option>
+                                ))}
+                            </select>
+                        </div>
+           
 
 
-            <div className="col-md-4">
+                        <div className="col-md-3 mb-4">
                 <label className="form-label">CEDULA</label>
                 <input
                     value={CEDULA}
@@ -108,7 +117,7 @@ const CrearProveedor = () => {
                     required />
             </div>
 
-            <div className="col-md-2">
+                        <div className="col-md-3 mb-4">
                 <label className="form-label">PROVINCIA</label>
                 <input
                     value={PROVINCIA}
@@ -118,7 +127,7 @@ const CrearProveedor = () => {
                     required />
             </div>
 
-            <div className="col-md-2">
+                        <div className="col-md-3 mb-4">
                 <label className="form-label">CANTON</label>
                 <input
                     value={CANTON}
@@ -128,7 +137,7 @@ const CrearProveedor = () => {
                     required />
             </div>
 
-            <div className="col-md-2">
+                        <div className="col-md-3 mb-4">
                 <label className="form-label">DISTRITO</label>
                 <input
                     value={DISTRITO}
@@ -138,7 +147,7 @@ const CrearProveedor = () => {
                     required />
             </div>
 
-            <div className="col-md-2">
+                        <div className="col-md-3 mb-4">
                 <label className="form-label">BARRIO</label>
                 <input
                     value={BARRIO}
@@ -148,7 +157,7 @@ const CrearProveedor = () => {
                     required />
             </div>
 
-            <div className="col-md-2">
+                        <div className="col-md-9 mb-4">
                 <label className="form-label">OTRAS_SENNAS</label>
                 <input
                     value={OTRAS_SENNAS}
@@ -159,7 +168,7 @@ const CrearProveedor = () => {
             </div>
 
 
-            <div className="col-md-2">
+                        <div className="col-md-4 mb-4">
                 <label className="form-label">TELEFONO_1</label>
                 <input
                     value={TELEFONO_1}
@@ -169,7 +178,7 @@ const CrearProveedor = () => {
                     required />
             </div>
 
-            <div className="col-md-2">
+                        <div className="col-md-4 mb-4">
                 <label className="form-label">TELEFONO_2</label>
                 <input
                     value={TELEFONO_2}
@@ -180,7 +189,7 @@ const CrearProveedor = () => {
             </div>
 
 
-            <div className="col-md-2">
+                        <div className="col-md-4 mb-4">
                 <label className="form-label">TELEFONO_3</label>
                 <input
                     value={TELEFONO_3}
@@ -193,10 +202,15 @@ const CrearProveedor = () => {
 
 
             <div className="col-12">
-                <button type="submit" class="btn btn-primary">Crear </button>
-            </div>
-        </form>
+                            <button type="submit" className="btn btn-primary" style={{ margin: '10px auto', width: '300px', display: 'block' }}>
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
 
+        </form>
+            </div>
+        </div>
 
     )
 }

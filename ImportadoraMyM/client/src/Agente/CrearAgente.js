@@ -1,10 +1,12 @@
-import '../CSS/EstilosCrear.css'
+
+/*import '../CSS/EstilosCrear.css'*/
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import Navbar from '../Components/Navbar';
+import Sidebar from '../Components/Sidebar';
+
 
 const URI = 'http://localhost:8000/Agentes/';
 const URI2 = 'http://localhost:8000/Zonas/';
@@ -96,10 +98,11 @@ const CrearAgente = () => {
             ID_AGENTE
         });
 
-        navigate('/Agentes');
+        navigate('/');
     };
 
     return (
+        
         <Formik
             initialValues={{
                 NOMBRE: '',
@@ -120,9 +123,15 @@ const CrearAgente = () => {
             validationSchema={Validaciones}
             onSubmit={store}
         >
-            <Form>
-                <Navbar />
-                <div className="col-md-4">
+         
+
+            <div style={{ display: 'flex' }}>
+                {/* Coloca el Sidebar a la izquierda */}
+                <Sidebar />
+                <div style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+                    <Form style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '5px', background: 'white' }}>
+                        <div className="row">
+                            <div className="col-md-3 mb-4">
                     <label className="form-label">Nombre</label>
                     <Field
                         type="text"
@@ -136,7 +145,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-3  mb-4">
                     <label className="form-label">Apellido Paterno</label>
                     <Field
                         type="text"
@@ -150,7 +159,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-3  mb-4">
                     <label className="form-label">Apellido Materno</label>
                     <Field
                         type="text"
@@ -164,7 +173,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-3  mb-4">
                     <label className="form-label">Comisión</label>
                     <Field
                         type="text"
@@ -178,7 +187,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-2">
+                            <div className="col-md-3  mb-4">
                     <label className="form-label">Cedula</label>
                     <Field
                         type="text"
@@ -192,7 +201,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-2">
+                            <div className="col-md-3  mb-4">
                     <label className="form-label">Zona</label>
                     <Field as="select" className="form-control" name="ID_ZONA" required>
                         <option value="">Seleccionar Zona</option>
@@ -208,7 +217,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-3  mb-4">
                     <label className="form-label">Provincia</label>
                     <Field
                         type="text"
@@ -222,7 +231,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-3  mb-4">
                     <label className="form-label">Cantón</label>
                     <Field
                         type="text"
@@ -236,7 +245,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-3  mb-4">
                     <label className="form-label">Distrito</label>
                     <Field
                         type="text"
@@ -250,7 +259,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-3  mb-4">
                     <label className="form-label">Barrio</label>
                     <Field type="text" className="form-control" name="BARRIO" required />
                     <ErrorMessage
@@ -259,7 +268,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-6  mb-4">
                     <label className="form-label">Otras Señas</label>
                     <Field
                         type="text"
@@ -273,7 +282,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-4  mb-4">
                     <label className="form-label">Teléfono 1</label>
                     <Field
                         type="text"
@@ -287,7 +296,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-4  mb-4">
                     <label className="form-label">Teléfono 2</label>
                     <Field
                         type="text"
@@ -301,7 +310,7 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <div className="col-md-4">
+                            <div className="col-md-4  mb-4">
                     <label className="form-label">Teléfono 3</label>
                     <Field
                         type="text"
@@ -315,10 +324,13 @@ const CrearAgente = () => {
                         className="text-danger"
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">
+                            <button type="submit" className="btn btn-primary" style={{ margin: '10px auto', width: '300px', display: 'block'  }}>
                     Guardar
-                </button>
-            </Form>
+                            </button>
+                        </div>
+                </Form>
+                </div>
+            </div>
         </Formik>
     );
 };

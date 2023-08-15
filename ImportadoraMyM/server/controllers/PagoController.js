@@ -28,10 +28,12 @@ export const getPago = async (req, res) => {
 }
 //Crear un registro
 export const createPago = async (req, res) => {
+
     try {
-        const { ID_PAGO, FECHA_INGRESO, MONTO, ESTADO } = req.body;
+        const { ID_PROVEEDOR, FECHA_INGRESO, MONTO, ESTADO } = req.body;
+        console.log(req.body);
         const proveedor = await ProveedorSModel.findOne({
-            where: { ID_PAGO }
+            where: { ID_PROVEEDOR }
         });
         if (!proveedor) {
             return res.json({ message: 'No se encontró un proveedor con el ID proporcionado' });

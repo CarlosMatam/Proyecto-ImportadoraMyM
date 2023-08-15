@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import Sidebar from '../Components/Sidebar';
 
 const EditarCompra = () => {
     const { NUM_DOCUMENTO } = useParams();
@@ -106,46 +107,51 @@ const EditarCompra = () => {
         });
     };
 
-    
+
 
     return (
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
         <div>
-            <h2>Editar Compra</h2>
-            <form onSubmit={handleSubmit}>
+                <h2>Editar Compra</h2>
+                <div style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+                    <form onSubmit={handleSubmit} style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '5px', background: 'white' }}>
+                        
                 <label>Compañía:</label>
                 <input
                     type="text"
                     name="ID_COMPANIA"
                     value={compra.ID_COMPANIA || ''}
-                    onChange={handleInputChange}
+                            onChange={handleInputChange} 
                 />
-                <label>Proveedor:</label>
+                        <label >Proveedor:</label>
                 <input
                     type="text"
                     name="ID_PROVEEDOR"
                     value={compra.ID_PROVEEDOR || ''}
-                    onChange={handleInputChange}
+                            onChange={handleInputChange} 
                 />
-                <label>Bodega:</label>
+                        <label >Bodega:</label>
                 <input
                     type="text"
                     name="ID_BODEGA"
                     value={compra.ID_BODEGA || ''}
-                    onChange={handleInputChange}
+                            onChange={handleInputChange} 
                 />
-                <label>Fecha:</label>
+                        <label style={{ marginLeft: '5px' }}>Fecha:</label>
                 <input
                     type="date"
                     name="FECHA"
                     value={compra.FECHA || ''}
-                    onChange={handleInputChange}
+                            onChange={handleInputChange}
                 />
-                <label>Total:</label>
+                        <label style={{ marginLeft: '5px' }}>Total:</label>
                 <input
                     type="text"
                     name="TOTAL"
                     value={compra.TOTAL || ''}
-                    onChange={handleInputChange}
+                            onChange={handleInputChange} style={{ marginLeft: '5px' }}
                 />
                 <hr />
                 <h3>Detalle de la Compra</h3>
@@ -183,8 +189,10 @@ const EditarCompra = () => {
                     </div>
                 ))}
                 <button type="submit">Guardar cambios</button>
-            </form>
+                    </form>
+                </div>
             <Link to="/Compras">Volver a la lista de compras</Link>
+            </div>
         </div>
     );
 };

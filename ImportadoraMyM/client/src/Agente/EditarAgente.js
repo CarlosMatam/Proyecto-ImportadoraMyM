@@ -1,8 +1,9 @@
-import '../CSS/EstilosEditar.css'
+/*import '../CSS/EstilosEditar.css'*/
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from '../Components/Navbar';
+import Sidebar from '../Components/Sidebar';
+
 
 const URI = 'http://localhost:8000/Agentes/'
 const URI2 = 'http://localhost:8000/Zonas/'
@@ -96,11 +97,17 @@ const EditarAgente = () => {
     };
 
     return (
-        <div>
-            <Navbar />
-            <h3>Edit POST</h3>
-            <form onSubmit={update}>
-                <div className='mb-3'>
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+
+     
+
+                <div style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+                    <form onSubmit={update} style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '5px', background: 'white' }}>
+
+                        <div className="row">
+                            <div className='col-md-3 mb-4'>
                     <label className='form-label'>Nombre</label>
                     <input
                         value={NOMBRE}
@@ -109,9 +116,9 @@ const EditarAgente = () => {
                         className='form-control'
                     />
                 </div>
-                <div className='mb-3'>
+                            <div className='col-md-3 mb-4'>
                     <label className='form-label'>Primer Apellido</label>
-                    <textarea
+                                <input
                         value={APELLIDO_PATERNO}
                         onChange={(e) => setApellido_paterno(e.target.value)}
                         type="text"
@@ -119,9 +126,9 @@ const EditarAgente = () => {
                     />
                 </div>
 
-                <div className='mb-3'>
+                            <div className='col-md-3 mb-4'>
                     <label className='form-label'>Segundo Apellido</label>
-                    <textarea
+                                <input
                         value={APELLIDO_MATERNO}
                         onChange={(e) => setApellido_materno(e.target.value)}
                         type="text"
@@ -129,11 +136,11 @@ const EditarAgente = () => {
                     />
                 </div>
 
-               
 
-                <div className='mb-3'>
+
+                            <div className='col-md-3 mb-4'>
                     <label className='form-label'>Comisión por venta</label>
-                    <textarea
+                                <input
                         value={COMISION_POR_VENTA}
                         onChange={(e) => setComision_por_venta(e.target.value)}
                         type="text"
@@ -141,9 +148,9 @@ const EditarAgente = () => {
                     />
                 </div>
 
-                <div className='mb-3'>
+                            <div className='col-md-3 mb-4'>
                     <label className='form-label'>ID Zona</label>
-                    <textarea
+                                <input
                         value={ID_ZONA}
                         onChange={(e) => setId_zona(e.target.value)}
                         type="text"
@@ -151,9 +158,9 @@ const EditarAgente = () => {
                     />
                 </div>
 
-                <div className='mb-3'>
+                            <div className='col-md-3 mb-4'>
                     <label className='form-label'>Cedula</label>
-                    <textarea
+                                <input
                         value={IDENTIFICACION}
                         onChange={(e) => setIdentificacion(e.target.value)}
                         type="text"
@@ -161,7 +168,7 @@ const EditarAgente = () => {
                     />
                 </div>
 
-                <div className="mb-3">
+                            <div className="col-md-3 mb-4">
                     <label className="form-label">Teléfono 1</label>
                     <input
                         value={TELEFONO_1}
@@ -170,7 +177,7 @@ const EditarAgente = () => {
                         className="form-control"
                     />
                 </div>
-                <div className="mb-3">
+                            <div className="col-md-3 mb-4">
                     <label className="form-label">Teléfono 2</label>
                     <input
                         value={TELEFONO_2}
@@ -179,7 +186,7 @@ const EditarAgente = () => {
                         className="form-control"
                     />
                 </div>
-                <div className="mb-3">
+                            <div className="col-md-3 mb-4">
                     <label className="form-label">Teléfono 3</label>
                     <input
                         value={TELEFONO_3}
@@ -189,7 +196,7 @@ const EditarAgente = () => {
                     />
                 </div>
 
-                <div className="mb-3">
+                            <div className="col-md-3 mb-4">
                     <label className="form-label">Provincia</label>
                     <input
                         value={PROVINCIA}
@@ -198,7 +205,7 @@ const EditarAgente = () => {
                         className="form-control"
                     />
                 </div>
-                <div className="mb-3">
+                            <div className="col-md-3 mb-4">
                     <label className="form-label">Cantón</label>
                     <input
                         value={CANTON}
@@ -207,7 +214,7 @@ const EditarAgente = () => {
                         className="form-control"
                     />
                 </div>
-                <div className="mb-3">
+                            <div className="col-md-3 mb-4">
                     <label className="form-label">Distrito</label>
                     <input
                         value={DISTRITO}
@@ -216,7 +223,7 @@ const EditarAgente = () => {
                         className="form-control"
                     />
                 </div>
-                <div className="mb-3">
+                            <div className="col-md-3 mb-4">
                     <label className="form-label">Barrio</label>
                     <input
                         value={BARRIO}
@@ -225,7 +232,7 @@ const EditarAgente = () => {
                         className="form-control"
                     />
                 </div>
-                <div className="mb-3">
+                            <div className="col-md-9 mb-4">
                     <label className="form-label">Otras señas</label>
                     <input
                         value={OTRAS_SENNAS}
@@ -236,8 +243,11 @@ const EditarAgente = () => {
                 </div>
 
 
-                <button type="submit" className="btn btn-primary">Actualizar</button>
-            </form>
+                            <button type="submit" className="btn btn-primary" style={{ margin: '10px auto', width: '300px', display: 'block' }}>Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            
         </div>
     )
 

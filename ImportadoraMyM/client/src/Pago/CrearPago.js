@@ -2,15 +2,16 @@ import '../CSS/EstilosCrear.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Navbar from '../Components/Navbar'
+import Sidebar from '../Components/Sidebar';
+
 
 
 const URI = 'http://localhost:8000/Pagos/'
 const URI2 = 'http://localhost:8000/Proveedores/'
 
 const CrearPago = () => {
-    
-    
+
+
     const [Proveedores, setProveedor] = useState([])
     useEffect(() => {
         getProveedores()
@@ -36,60 +37,63 @@ const CrearPago = () => {
     }
 
     return (
-       
-        <form className="row g-3" onSubmit={store}  >
-            <Navbar />
-                <div class="col-md-6">
-                    <label  className="form-label">Fecha de ingreso</label>
-                    <input
-                        value={FECHA_INGRESO}
-                        onChange={(e) => setFecha_ingreso(e.target.value)}
-                        type="date"
-                        className='form-control'
-                    required/>
-                   
-                </div>
-            <div className="col-md-6">
-                    <label class="form-label">Monto</label>
-                    <input
-                        value={MONTO}
-                        onChange={(e) => setMonto(e.target.value)}
-                        type="text"
-                        className='form-control'
-                    required/>
-                </div>
-            <div className="col-12">
-                <label className="form-label">Estado</label>
-                    <input
-                        value={ESTADO}
-                        onChange={(e) => setEstado(e.target.value)}
-                        type="text"
-                        className='form-control'
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+
+        <div style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+                <form style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '5px', background: 'white' }} onSubmit={store}  >
+
+                    <div className="row">
+                        <div class="col-md-6  mb-4">
+                <label className="form-label">Fecha de ingreso</label>
+                <input
+                    value={FECHA_INGRESO}
+                    onChange={(e) => setFecha_ingreso(e.target.value)}
+                    type="date"
+                    className='form-control'
                     required />
-                    
-                </div>
-            <div className="col-12">
-                <label className="form-label">ID Proveedor</label>
-                    <input
-                        value={ID_PROVEEDOR}
-                        onChange={(e) => setId_proveedor(e.target.value)}
-                        type="text"
-                        className='form-control'
-                    required/>
-                    
-                </div>
-            <select value={ID_PROVEEDOR} onChange={(e) => setId_proveedor(e.target.value)}>
+
+            </div>
+                        <div className="col-md-6  mb-4">
+                <label class="form-label">Monto</label>
+                <input
+                    value={MONTO}
+                    onChange={(e) => setMonto(e.target.value)}
+                    type="text"
+                    className='form-control'
+                    required />
+            </div>
+                        <div className="col-md-6  mb-4">
+                <label className="form-label">Estado</label>
+                <input
+                    value={ESTADO}
+                    onChange={(e) => setEstado(e.target.value)}
+                    type="text"
+                    className='form-control'
+                    required />
+
+            </div>
+          
+                        <div className="col-md-6  mb-4" > 
+                            <label className="form-label">Proveedor</label>    
+                            <select style={{ marginLeft: '15px' }} value={ID_PROVEEDOR} onChange={(e) => setId_proveedor(e.target.value)}>
                 {Proveedores.map((option) => (
                     <option key={ID_PROVEEDOR} value={option.ID_PROVEEDOR} >{option.NOMBRE}</option>
                 ))}
-            </select>
-            
-            <div className="col-12">
-                    <button type="submit" class="btn btn-primary">Crear </button>
-                </div>
-            </form>
+                            </select>
+                        </div>
 
-        
+            <div className="col-12">
+                            <button type="submit" className="btn btn-primary" style={{ margin: '10px auto', width: '300px', display: 'block' }}>
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+        </form>
+            </div>
+        </div>
+
     )
 }
 

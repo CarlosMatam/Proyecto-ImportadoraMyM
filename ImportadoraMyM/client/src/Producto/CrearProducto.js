@@ -4,12 +4,13 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import Navbar from '../Components/Navbar';
+import Sidebar from '../Components/Sidebar';
+
 
 const URI = 'http://localhost:8000/Productos/';
 const URI2 = 'http://localhost:8000/Companias/';
 const URI3 = 'http://localhost:8000/Proveedores/';
-const URI4='http://localhost:8000/Cabys';
+const URI4 = 'http://localhost:8000/Cabys';
 
 const Validaciones = Yup.object().shape({
     ID_PRODUCTO: Yup.string().required('Codigo es requerido'),
@@ -27,11 +28,11 @@ const Validaciones = Yup.object().shape({
     CABYS: Yup.string().required('CABYS es requerido'),
     COMPANIA: Yup.string().required('COMPANIA es requerido'),
     FECHA_INGRESO: Yup.date().required('FECHA_INGRESO es requerido'),
-   
+
 });
 
 const CrearProducto = () => {
-    
+
     const [Companias, setCompania] = useState([]);
     useEffect(() => {
         getCompanias();
@@ -108,7 +109,7 @@ const CrearProducto = () => {
     return (
         <Formik
             initialValues={{
-                ID_PRODUCTO:"",
+                ID_PRODUCTO: "",
                 NOMBRE: '',
                 DESCRIPCION: '',
                 PROVEEDOR: '',
@@ -125,8 +126,11 @@ const CrearProducto = () => {
             validationSchema={Validaciones}
             onSubmit={store}
         >
+            <div style={{ display: 'flex' }}>
+                {/* Coloca el Sidebar a la izquierda */}
+                <Sidebar />
             <Form>
-                <Navbar />
+
                 <div className="col-md-4">
                     <label className="form-label">Codigo</label>
                     <Field
@@ -321,7 +325,8 @@ const CrearProducto = () => {
                 <button type="submit" className="btn btn-primary">
                     Guardar
                 </button>
-            </Form>
+                </Form>
+            </div>
         </Formik>
     );
 };

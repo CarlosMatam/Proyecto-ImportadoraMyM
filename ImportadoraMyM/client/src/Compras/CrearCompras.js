@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Sidebar from '../Components/Sidebar';
 
 const IVA_PORCENTAJE = 0.13; // Valor del IVA (13%)
 
@@ -26,7 +27,7 @@ const CrearCompra = () => {
         CANTIDAD: '',
         PRECIO: '',
         PORC_DESCUENTO: '',
-    
+
         PRECIO_TOTAL: 0,
     });
 
@@ -150,7 +151,7 @@ const CrearCompra = () => {
                         CANTIDAD: '',
                         PRECIO: productoData.PRECIO,
                         PORC_DESCUENTO: productoData.DESCUENTO,
-                        
+
                         PRECIO_TOTAL: 0,
                     }));
                 } else {
@@ -161,7 +162,7 @@ const CrearCompra = () => {
                         CANTIDAD: '',
                         PRECIO: '',
                         PORC_DESCUENTO: '',
-                      
+
                         PRECIO_TOTAL: 0,
                     }));
                 }
@@ -176,7 +177,7 @@ const CrearCompra = () => {
                 CANTIDAD: '',
                 PRECIO: '',
                 PORC_DESCUENTO: '',
-             
+
                 PRECIO_TOTAL: 0,
             }));
         }
@@ -223,15 +224,15 @@ const CrearCompra = () => {
             (total, producto) => total + (producto.CANTIDAD * producto.PRECIO * producto.PORC_DESCUENTO) / 100,
             0
         );
-        const total = subtotal ;
+        const total = subtotal;
         const iva = total * IVA_PORCENTAJE;
-        const totalConIVA = total + iva; 
+        const totalConIVA = total + iva;
 
 
         const nuevaCompra = {
             ...compra,
             detallesCompra: detalleCompra,
-            TOTAL: totalConIVA, 
+            TOTAL: totalConIVA,
             DESCUENTO: descuentoTotal,
         };
 
@@ -258,11 +259,16 @@ const CrearCompra = () => {
     };
 
     return (
-        <div>
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+            
+            <div style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
             <h2>Crear Compra</h2>
-            <div>
-                <h3>Información de la Compra</h3>
-                <div>
+                <div style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '5px', background: 'white' }}>
+                    <h3>Información de la Compra</h3>
+                    <div className="row">
+                        <div className="col-md-3 mb-4">
                     <label htmlFor="compania">Compañía:</label>
                     <select
                         id="compania"
@@ -278,7 +284,7 @@ const CrearCompra = () => {
                         ))}
                     </select>
                 </div>
-                <div>
+                        <div className="col-md-3 mb-4">
                     <label htmlFor="proveedor">Proveedor:</label>
                     <select
                         id="proveedor"
@@ -294,7 +300,7 @@ const CrearCompra = () => {
                         ))}
                     </select>
                 </div>
-                <div>
+                        <div className="col-md-3 mb-4">
                     <label htmlFor="bodega">Bodega:</label>
                     <select id="bodega" name="ID_BODEGA" value={compra.ID_BODEGA} onChange={handleCompraChange}>
                         <option value="">Seleccionar Bodega</option>
@@ -305,7 +311,7 @@ const CrearCompra = () => {
                         ))}
                     </select>
                 </div>
-                <div>
+                        <div className="col-md-3 mb-4">
                     <label htmlFor="fecha">Fecha:</label>
                     <input
                         type="date"
@@ -317,19 +323,23 @@ const CrearCompra = () => {
                 </div>
             </div>
             <hr />
-            <div>
-                <h3>Detalle de la Compra</h3>
-                <div>
+                    <div>
+                        
+                        <h3>Detalle de la Compra</h3>
+                        <div className="row">
+                            <div className="col-md-2 mb-4">
                     <label htmlFor="codigoProducto">Código de Producto:</label>
                     <input
                         type="text"
                         id="codigoProducto"
                         value={codigoProducto}
                         onChange={handleCodigoChange}
-                    />
-                    <button onClick={handleAgregarProducto}>Agregar Producto</button>
-                </div>
-                <div>
+                                />
+                               
+                               
+                            </div>
+                            
+                            <div className="col-md-2 mb-4">
                     <label htmlFor="descripcion">Descripción:</label>
                     <input
                         type="text"
@@ -340,7 +350,7 @@ const CrearCompra = () => {
                         readOnly
                     />
                 </div>
-                <div>
+                            <div className="col-md-2 mb-4">
                     <label htmlFor="cantidad">Cantidad:</label>
                     <input
                         type="number"
@@ -350,7 +360,7 @@ const CrearCompra = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div>
+                            <div className="col-md-2 mb-4">
                     <label htmlFor="precio">Precio:</label>
                     <input
                         type="number"
@@ -361,7 +371,7 @@ const CrearCompra = () => {
                         readOnly
                     />
                 </div>
-                <div>
+                            <div className="col-md-2 mb-4">
                     <label htmlFor="descuento">Descuento (%):</label>
                     <input
                         type="number"
@@ -370,13 +380,21 @@ const CrearCompra = () => {
                         value={producto.PORC_DESCUENTO}
                         onChange={handleInputChange}
                     />
-                </div>
-                <button onClick={limpiarProducto}>Limpiar Producto</button>
-                <div>
-                    <h4>Detalle de Compra Agregado</h4>
-                   
-                    <p>Líneas agregadas: {lineasAgregadas}</p>
-                    <table>
+                            </div>
+                            <div className="col-md-2 mb-4">
+                                <button onClick={handleAgregarProducto}>Agregar Producto</button>
+                                <button style={{ marginTop: "8px" }} onClick={limpiarProducto}>Limpiar Producto</button>
+                            </div>
+                            
+                        </div>
+                        <h4 style={{ textAlign: 'center' }}>Detalle de Compra Agregado</h4>
+
+                        <p style={{ textAlign: 'center' }}>Líneas agregadas: {lineasAgregadas}</p>
+                <div style={{ contentAlign: 'center', alignItems: 'center',
+                            justifyContent: 'center' , display:'flex'}}>
+                            
+
+                            <table >
                         <thead>
                             <tr>
                                 <th>Código</th>
@@ -384,7 +402,7 @@ const CrearCompra = () => {
                                 <th>Cantidad</th>
                                 <th>Precio</th>
                                 <th>Descuento</th>
-                             
+
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -406,21 +424,38 @@ const CrearCompra = () => {
                     </table>
                 </div>
             </div>
-            <hr />
-            <div>
-                <h3>Resumen de la Compra</h3>
-                <div>
-                    <p>Subtotal: {subtotal}</p>
-                    <p>Descuento Total: {descuentoTotal}</p>
-                    <p>Total: {total}</p>
-                    <p>IVA (13%): {iva}</p>
-                    <p>Total con IVA: {totalConIVA}</p>
+                    <hr />
+                    <h4 style={{ textAlign: 'center', margin:"20px" }}>Resumen de la Compra</h4>
+                    <div>
+                
+                        <div className="d-flex flex-column align-items-center">
+                            <div >
+                                
+                                <p>Subtotal: {subtotal}</p>
+                            </div>
+                            <div >
+                                <p>Descuento: {descuentoTotal}</p>
+                            </div>
+                            <div >
+                                <p>Total: {total}</p>
+                            </div>
+                            <div >
+                                <p>IVA (13%): {iva}</p>
+                            </div>
+                            <div >
+                                <p>Total con IVA: {totalConIVA}</p>
+                                </div>
                 </div>
             </div>
             <hr />
-            <div>
-                <button onClick={crearCompra}>Crear Compra</button>
-                <button onClick={limpiarCompra}>Limpiar Compra</button>
+                    <div style={{
+                        contentAlign: 'center', alignItems: 'center',
+                        justifyContent: 'center', display: 'flex'
+                    }}>
+                        <button className="btn btn-primary" style={{marginRight: '10px' }} onClick={crearCompra}>Crear Compra</button>
+                        <button className="btn btn-danger" onClick={limpiarCompra}>Limpiar Compra</button>
+            </div>
+                </div>
             </div>
         </div>
     );

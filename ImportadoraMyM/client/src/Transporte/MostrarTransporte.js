@@ -2,7 +2,8 @@ import '../CSS/EstilosMostrar.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../Components/Navbar'
+import Sidebar from '../Components/Sidebar';
+
 
 const URI = 'http://localhost:8000/Transportes/'
 
@@ -45,13 +46,17 @@ const MostrarTransporte = () => {
 
 
     return (
-        <div className='container-fluid'>
-            <Navbar />
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+
+            <div className='container-fluid' style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+
             <label>Buscar por nombre: </label>
             <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
                 <div className='col'>
-                    <Link to="/Transporte/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
+                    <Link to="/Transportes/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>
                     <table className='table'>
                         <thead className='table-primary'>
                             <tr>
@@ -83,6 +88,8 @@ const MostrarTransporte = () => {
 
 
 
+            </div>
+            
         </div>
 
 

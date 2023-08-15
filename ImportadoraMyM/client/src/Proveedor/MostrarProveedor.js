@@ -1,8 +1,9 @@
-import '../CSS/EstilosMostrar.css'
+
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../Components/Navbar'
+import Sidebar from '../Components/Sidebar';
+
 
 const URI = 'http://localhost:8000/Proveedores/'
 
@@ -45,8 +46,12 @@ const MostrarProveedores = () => {
 
 
     return (
-        <div className='container-fluid'>
-            <Navbar />
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+            <div className='container-fluid' style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+                
+
             <label>Buscar por nombre: </label>
             <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
@@ -75,7 +80,7 @@ const MostrarProveedores = () => {
                                     <td> {Proveedor.TAB_TELEFONOS_PROVEEDORE.TELEFONO_1} </td>
                                     <td> {Proveedor.TAB_TELEFONOS_PROVEEDORE.TELEFONO_2} </td>
                                     <td> {Proveedor.CEDULA} </td>
-                                  
+
                                     <td>
 
                                         <Link to={`/Proveedores/edit/${Proveedor.ID_PROVEEDOR}`} className='btn btn-info'>Editar</Link>
@@ -90,6 +95,7 @@ const MostrarProveedores = () => {
 
 
 
+            </div>
         </div>
 
 

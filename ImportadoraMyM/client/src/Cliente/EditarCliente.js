@@ -1,8 +1,9 @@
-import '../CSS/EstilosEditar.css'
+/*import '../CSS/EstilosEditar.css'*/
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from '../Components/Navbar';
+import Sidebar from '../Components/Sidebar';
+
 
 const URI = 'http://localhost:8000/Clientes/';
 const URI2 = 'http://localhost:8000/TipoCedula/';
@@ -100,8 +101,12 @@ const EditarCliente = () => {
     };
 
     return (
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+        
         <div>
-            <Navbar />
+
             <h3>Edit POST</h3>
             <form onSubmit={update}>
                 <div className='mb-3'>
@@ -252,6 +257,7 @@ const EditarCliente = () => {
 
                 <button type="submit" className="btn btn-primary">Actualizar</button>
             </form>
+            </div>
         </div>
     )
 

@@ -2,7 +2,8 @@ import '../CSS/EstilosMostrar.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../Components/Navbar'
+import Sidebar from '../Components/Sidebar';
+
 
 const URI = 'http://localhost:8000/Pagos/'
 
@@ -40,10 +41,13 @@ const MostrarPago = () => {
         resultado = Pagos.filter((dato) =>
             dato.NOMBRE.toLowerCase().includes(search.toLocaleLowerCase()));
     }
-    
+
     return (
-        <div className='container'>
-            <Navbar />
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+            <div className='container-fluid' style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+
             <label>Buscar por nombre: </label>
             <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
@@ -52,10 +56,10 @@ const MostrarPago = () => {
                     <table className='table'>
                         <thead className='table-primary'>
                             <tr>
-                                
+
                                 <th>FECHA DE INGRESO</th>
                                 <th>MONTO</th>
-                                
+
                                 <th>ID PROVEEDOR</th>
                             </tr>
                         </thead>
@@ -64,10 +68,10 @@ const MostrarPago = () => {
                                 <tr key={Pago.ID_PAGO}>
                                     <td> {Pago.FECHA_INGRESO} </td>
                                     <td> {Pago.MONTO} </td>
-                                 
+
                                     <td> {Pago.ID_PROVEEDOR} </td>
                                     <td>
-                                        
+
                                         <Link to={`/Pagos/edit/${Pago.ID_PAGO}`} className='btn btn-info'>Editar</Link>
                                         <button onClick={() => deletePago(Pago.ID_PAGO)} className='btn btn-danger'>Eliminar</button>
                                     </td>
@@ -79,10 +83,12 @@ const MostrarPago = () => {
             </div>
 
 
+
+            </div>
             
         </div>
 
-        
+
     )
 
 }

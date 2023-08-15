@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Sidebar from '../Components/Sidebar';
+
 
 const CrearFactura = () => {
     const [companias, setCompanias] = useState([]);
@@ -256,10 +258,17 @@ const CrearFactura = () => {
     const totalDescuentos = calcularTotalDescuentos();
 
     return (
-        <div>
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+            <div style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
             {/* Formulario para ingresar datos de la factura */}
-            <h4>Factura</h4>
-           
+                <h2>Crear Factura</h2>
+                <div style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '5px', background: 'white' }}>
+                    <h3>Información de la Factura</h3>
+                    <div className="row">
+                        <div className="col-md-2 ">
+                            <label htmlFor="COMPAÑIA">Compañia:</label>
             <select
                 name="ID_COMPANIA"
                 value={factura.ID_COMPANIA}
@@ -271,13 +280,17 @@ const CrearFactura = () => {
                         {compania.NOMBRE}
                     </option>
                 ))}
-            </select>
+                            </select>
+                        </div>
+                        
+                        <div className="col-md-2 " >
+                            <label htmlFor="TIPO_FACTURA">Tipo Factura:</label>
             <select
                 name="ID_TIPO_FACTURA"
                 value={factura.ID_TIPO_FACTURA}
                 onChange={handleFacturaChange}
             >
-                <option value="">Seleccionar Tipo de Factura</option>
+                <option value="">  Tipo de Factura</option>
                 {tiposFactura.map((tipoFactura) => (
                     <option
                         key={tipoFactura.ID_TIPO_FACTURA}
@@ -286,7 +299,12 @@ const CrearFactura = () => {
                         {tipoFactura.nombre}
                     </option>
                 ))}
-            </select>
+                            </select>
+                            
+                        </div>
+                        
+                        <div className="col-md-2 ">
+                            <label htmlFor="CLIENTE">Cliente:</label>
             <select name="ID_CLIENTE" value={factura.ID_CLIENTE} onChange={handleFacturaChange}>
                 <option value="">Seleccionar Cliente</option>
                 {clientes.map((cliente) => (
@@ -294,7 +312,12 @@ const CrearFactura = () => {
                         {cliente.NOMBRE}
                     </option>
                 ))}
-            </select>
+                            </select>
+                            
+                        </div>
+                        
+                        <div className="col-md-2 ">
+                            <label htmlFor="FECHA">Fecha:</label>
             <input
                 type="text"
                 name="FECHA"
@@ -302,35 +325,52 @@ const CrearFactura = () => {
                 onChange={handleFacturaChange}
                 placeholder="Fecha"
                 disabled
-            />
+                            />
+                        </div>
+                        
+                        <div className="col-md-2 ">
+                            <label htmlFor="VENCIMIENTO">Vencimiento:</label>
             <input
                 type="date"
                 name="VENCIMIENTO"
                 value={factura.VENCIMIENTO}
                 onChange={handleFacturaChange}
                 placeholder="Vencimiento"
-            />
-
+                            />
+                        </div>
+                        
+                        <div className="col-md-2">
+                            <label htmlFor="ID_FACTURA">ID Factura:</label>
             <input
                 type="text"
                 name="ID_FACTURA"
                 value={factura.ID_FACTURA}
                 readOnly
-            />
+                        />
+                        </div>
+                    </div>
 
             <br />
             <br />
             <br />
             <br />
             <hr></hr>
-            {/* Formulario para ingresar datos del producto */}
+                    {/* Formulario para ingresar datos del producto */}
+                    
+                    <div className="row">
+                        <div className="col-md-2 mb-4">
+            <label htmlFor="codigoProducto">Código de Producto:</label>
             <input
                 type="text"
                 name="codigo"
                 value={codigoProducto}
                 onChange={handleCodigoChange}
                 placeholder="Código"
-            />
+                            />
+                        </div>
+                        
+                        <div className="col-md-2 mb-4">
+                            <label htmlFor="descripcion">Descripción:</label>
             <input
                 type="text"
                 name="descripcion"
@@ -338,14 +378,22 @@ const CrearFactura = () => {
                 onChange={handleInputChange}
                 placeholder="Descripción"
                 disabled
-            />
+                        />
+                        </div>
+                        
+                        <div className="col-md-2 mb-4">
+                <label htmlFor="cantidad">Cantidad:</label>
             <input
                 type="number"
                 name="cantidad"
                 value={producto.cantidad}
                 onChange={handleInputChange}
                 placeholder="Cantidad"
-            />
+                            />
+                        </div>
+
+                        <div className="col-md-2 mb-4">
+                            <label htmlFor="precio">Precio:</label>
             <input
                 type="number"
                 name="precio"
@@ -353,23 +401,43 @@ const CrearFactura = () => {
                 onChange={handleInputChange}
                 placeholder="Precio"
                 disabled
-            />
+                            />
+                        </div>
 
-            {/* Mostrar el descuento aplicado */}
+                        {/* Mostrar el descuento aplicado */}
+                        <div className="col-md-2 mb-4">
+                            <label htmlFor="descuento">Descuento (%):</label>
             <input
                 type="text"
                 name="descuento"
                 value={producto.descuento}
                 placeholder="Descuento (%)"
                 disabled
-            />
+                        />
+                        </div>
+                        
+                        <div className="col-md-2 mb-4">
+                            <button  onClick={handleAgregarProducto}>Agregar Producto</button>
+                     </div>
+                            
 
             {/* Botón para agregar el producto al detalle de venta */}
-            <button onClick={handleAgregarProducto}>Agregar Producto</button>
-
+           
+</div>
             {/* Mostrar el detalle de venta */}
-            <h4>Detalle de Venta</h4>
-            <p>Líneas agregadas: {lineasAgregadas}</p>
+                    <h4 style={{ textAlign: 'center' }}>Detalle de Venta</h4>
+                    <p style={{ textAlign: 'center' }}>Líneas agregadas: {lineasAgregadas}</p>
+
+                    <div style={{
+                        contentAlign: 'center', alignItems: 'center',
+                        justifyContent: 'center', display: 'flex'
+                    }}>
+
+
+
+                        
+                   
+                     
             <table>
                 <thead>
                     <tr>
@@ -396,8 +464,12 @@ const CrearFactura = () => {
                         </tr>
                     ))}
                 </tbody>
-            </table>
+                        </table>
+                    </div>
+                    <hr />
+                    <h4 style={{ textAlign: 'center', margin: "20px" }}>Resumen de la Factura</h4>
 
+                    <div className="d-flex flex-column align-items-center"> 
             {/* Mostrar el subtotal */}
             <h4>Subtotal: ₡ {subtotal.toFixed(2)}</h4>
 
@@ -409,7 +481,18 @@ const CrearFactura = () => {
 
             {/* Mostrar el total */}
             <h4>Total: ₡ {total.toFixed(2)}</h4>
-            <button onClick={crearFactura}>Crear Factura</button>
+                        
+                    </div>
+                    <div style={{
+                        contentAlign: 'center', alignItems: 'center',
+                        justifyContent: 'center', display: 'flex', margin: '10px'
+                    }}>
+                        <button className="btn btn-primary" onClick={crearFactura}>Crear Factura</button>
+
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     );
 };

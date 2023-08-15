@@ -1,8 +1,9 @@
-import '../CSS/EstilosEditar.css'
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from '../Components/Navbar';
+import Sidebar from '../Components/Sidebar';
+
 
 
 const URI = 'http://localhost:8000/Proveedores/'
@@ -43,7 +44,7 @@ const EditarProveedor = () => {
             CORREO: CORREO,
             TIPO_CEDULA: TIPO_CEDULA,
             CEDULA: CEDULA,
-          
+
         });
 
         // Actualizar los teléfonos
@@ -77,7 +78,7 @@ const EditarProveedor = () => {
         setCorreo(res.data.CORREO);
         setTipo_cedula(res.data.TIPO_CEDULA);
         setCedula(res.data.CEDULA);
-       
+
 
         // Obtener los teléfonos y direcciones del agente
         const telefonosRes = await axios.get(URI4 + ID_PROVEEDOR);
@@ -95,11 +96,19 @@ const EditarProveedor = () => {
     };
 
     return (
-        <div>
-            <Navbar />
-            <h3>Edit POST</h3>
-            <form onSubmit={update}>
-                <div className="col-md-6">
+
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+
+       
+
+                
+                <div style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+                    <form onSubmit={update} style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '5px', background: 'white' }}>
+
+                        <div className="row">
+                        <div className="col-md-3  mb-4">
                     <label className="form-label">Nombre</label>
                     <input
                         value={NOMBRE}
@@ -109,7 +118,7 @@ const EditarProveedor = () => {
                         required />
 
                 </div>
-                <div className="col-md-6">
+                        <div className="col-md-3  mb-4">
                     <label className="form-label">CORREO </label>
                     <input
                         value={CORREO}
@@ -119,9 +128,9 @@ const EditarProveedor = () => {
                         required />
                 </div>
 
-                <div className='mb-3'>
+                        <div className='col-md-3  mb-4'>
                     <label className='form-label'>Tipo de cedula</label>
-                    <textarea
+                    <input
                         value={TIPO_CEDULA}
                         onChange={(e) => setTipo_cedula(e.target.value)}
                         type="text"
@@ -129,7 +138,7 @@ const EditarProveedor = () => {
                     />
                 </div>
 
-                <div className="col-md-4">
+                        <div className="col-md-3  mb-4">
                     <label className="form-label">CEDULA</label>
                     <input
                         value={CEDULA}
@@ -139,7 +148,7 @@ const EditarProveedor = () => {
                         required />
                 </div>
 
-                <div className="col-md-2">
+                        <div className="col-md-3  mb-4">
                     <label className="form-label">PROVINCIA</label>
                     <input
                         value={PROVINCIA}
@@ -149,7 +158,7 @@ const EditarProveedor = () => {
                         required />
                 </div>
 
-                <div className="col-md-2">
+                        <div className="col-md-3  mb-4">
                     <label className="form-label">CANTON</label>
                     <input
                         value={CANTON}
@@ -159,7 +168,7 @@ const EditarProveedor = () => {
                         required />
                 </div>
 
-                <div className="col-md-2">
+                        <div className="col-md-3  mb-4">
                     <label className="form-label">DISTRITO</label>
                     <input
                         value={DISTRITO}
@@ -169,7 +178,7 @@ const EditarProveedor = () => {
                         required />
                 </div>
 
-                <div className="col-md-2">
+                        <div className="col-md-3  mb-4">
                     <label className="form-label">BARRIO</label>
                     <input
                         value={BARRIO}
@@ -179,7 +188,7 @@ const EditarProveedor = () => {
                         required />
                 </div>
 
-                <div className="col-md-2">
+                        <div className="col-md-6  mb-4">
                     <label className="form-label">OTRAS_SENNAS</label>
                     <input
                         value={OTRAS_SENNAS}
@@ -190,7 +199,7 @@ const EditarProveedor = () => {
                 </div>
 
 
-                <div className="col-md-2">
+                        <div className="col-md-6  mb-4">
                     <label className="form-label">TELEFONO_1</label>
                     <input
                         value={TELEFONO_1}
@@ -200,7 +209,7 @@ const EditarProveedor = () => {
                         required />
                 </div>
 
-                <div className="col-md-2">
+                        <div className="col-md-6  mb-4">
                     <label className="form-label">TELEFONO_2</label>
                     <input
                         value={TELEFONO_2}
@@ -211,7 +220,7 @@ const EditarProveedor = () => {
                 </div>
 
 
-                <div className="col-md-2">
+                        <div className="col-md-6  mb-4">
                     <label className="form-label">TELEFONO_3</label>
                     <input
                         value={TELEFONO_3}
@@ -224,8 +233,11 @@ const EditarProveedor = () => {
 
 
 
-                <button type="submit" className="btn btn-primary">Actualizar</button>
-            </form>
+                        <button type="submit" className="btn btn-primary" style={{ margin: '10px auto', width: '300px', display: 'block' }}>Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            
         </div>
     )
 

@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Sidebar from '../Components/Sidebar';
 
-const URI = 'http://localhost:8000/Compras/'; 
+const URI = 'http://localhost:8000/Compras/';
 
 const MostrarCompras = () => {
     const [search, setSearch] = useState('');
@@ -47,7 +48,10 @@ const MostrarCompras = () => {
     }
 
     return (
-        <div className='container-fluid'>
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+            <div className='container-fluid' style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
             <label>Buscar por número de documento de compra:</label>
             <input
                 type='text'
@@ -70,7 +74,7 @@ const MostrarCompras = () => {
                                 <th>Proveedor</th>
                                 <th>Fecha</th>
                                 <th>Total</th>
-                                <th>Acciones</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -101,6 +105,7 @@ const MostrarCompras = () => {
                         </tbody>
                     </table>
                 </div>
+            </div>
             </div>
         </div>
     );

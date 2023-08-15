@@ -1,8 +1,9 @@
-import '../CSS/EstilosMostrar.css'
+/*import '../CSS/EstilosMostrar.css'*/
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../Components/Navbar'
+import Sidebar from '../Components/Sidebar';
+
 
 const URI = 'http://localhost:8000/Agentes/'
 
@@ -45,8 +46,11 @@ const MostrarAG = () => {
 
 
     return (
-        <div className='container-fluid'>
-            <Navbar />
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+            <div className='container-fluid' style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
+
             <label>Buscar por nombre: </label>
             <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
@@ -57,9 +61,9 @@ const MostrarAG = () => {
                             <tr>
 
                                 <th>NOMBRE</th>
-                                <th>PRIMER APELLIDO</th>
-                                <th>SEGUNDO APELLIDO</th>
-                                <th>Provincia</th>
+                                <th>1er APELLIDO</th>
+                                <th>2do APELLIDO</th>
+                                <th>PROVINCIA</th>
                                 <th>TELEFONO</th>
                                 <th>TELEFONO 2</th>
                                 <th>COMISION</th>
@@ -94,7 +98,9 @@ const MostrarAG = () => {
 
 
 
-        </div>
+            </div>
+            
+            </div>
 
 
     )

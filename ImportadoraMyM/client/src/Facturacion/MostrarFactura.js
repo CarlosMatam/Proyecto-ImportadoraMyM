@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Sidebar from '../Components/Sidebar';
 
 const URI = 'http://localhost:8000/Facturacion/'
 
@@ -44,7 +45,10 @@ const MostrarF = () => {
 
 
     return (
-        <div className='container-fluid'>
+        <div style={{ display: 'flex' }}>
+            {/* Coloca el Sidebar a la izquierda */}
+            <Sidebar />
+            <div className='container-fluid' style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
             <label>Buscar por ID de factura: </label>
             <input type='text' placeholder='Digite el consecutivo de la factura' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
@@ -61,8 +65,8 @@ const MostrarF = () => {
                                 <th>Fecha</th>
                                 <th>Vencimiento</th>
                                 <th>Total</th>
-                          
-                          
+
+
                             </tr>
                         </thead>
                         <tbody>
@@ -75,9 +79,9 @@ const MostrarF = () => {
                                     <td> {Factura.FECHA} </td>
                                     <td> {Factura.VENCIMIENTO} </td>
                                     <td> {Factura.TOTAL} </td>
-                                 
+
                                     <td>
-                                   
+
                                         <Link to={`/Facturacion/edit/${Factura.ID_FACTURA}`} className='btn btn-info'>Editar</Link>
                                         <button onClick={() => deleteFactura(Factura.ID_FACTURA)} className='btn btn-danger'>Eliminar</button>
                                     </td>
@@ -90,11 +94,12 @@ const MostrarF = () => {
 
 
 
+            </div>
         </div>
 
 
     )
-    
+
 
 }
 

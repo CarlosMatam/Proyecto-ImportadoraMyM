@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBContainer } from 'cdbreact';
 import '../CSS/Login.css'
+import Sidebar from '../Components/Sidebar';
 
 const URI = 'http://localhost:8000/Login/';
 
@@ -38,6 +39,7 @@ const Login = () => {
     };
 
     return (
+        
         <Formik
             initialValues={{
                 LOGIN_USER: '',
@@ -46,6 +48,10 @@ const Login = () => {
             validationSchema={Validaciones}
             onSubmit={store}
         >
+            <div style={{ display: 'flex' }}>
+                {/* Coloca el Sidebar a la izquierda */}
+                <Sidebar />
+
             <Form>
                 <CDBContainer>
                 <CDBCard style={{ width: '30rem' }}>
@@ -68,7 +74,9 @@ const Login = () => {
                         className="text-danger"
                         
                     />
-                </div>
+                            </div>
+
+ 
                 <div className="mb-3">
                     <label className="form-label">Contraseña:</label>
                     <Field
@@ -96,7 +104,8 @@ const Login = () => {
                 </CDBCardBody>
                 </CDBCard>
                 </CDBContainer>
-            </Form>
+                </Form>
+                </div>
         </Formik>
     );
 };
