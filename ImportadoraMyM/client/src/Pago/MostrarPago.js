@@ -48,8 +48,8 @@ const MostrarPago = () => {
             <Sidebar />
             <div className='container-fluid' style={{ flex: 1, padding: '20px', background: 'rgba(128, 128, 128, 0.1)' }}>
 
-            <label>Buscar por nombre: </label>
-            <input type='text' placeholder='Digite el nombre' className='form-control' value={search} onChange={searcher} ></input>
+            <label>Buscar por ID: </label>
+            <input type='text' placeholder='Digite el ID que desea buscar' className='form-control' value={search} onChange={searcher} ></input>
             <div className='row'>
                 <div className='col'>
                     <Link to="/Pagos/create" className='btn btn-primary mt-2 mb-2'>Nuevo Registro</Link>

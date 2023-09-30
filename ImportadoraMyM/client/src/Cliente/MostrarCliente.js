@@ -62,8 +62,8 @@ const MostrarCliente = () => {
                             <tr>
 
                                 <th>NOMBRE</th>
-                                <th>PRIMER APELLIDO</th>
-                                <th>SEGUNDO APELLIDO</th>
+                                <th>1er APELLIDO</th>
+                                <th>2do APELLIDO</th>
                                 <th>PROVINCIA</th>
                                 <th>TELÉFONO</th>
                                 <th>TELÉFONO 2</th>

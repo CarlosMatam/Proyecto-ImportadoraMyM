@@ -27,6 +27,8 @@ import TipoFacturasRoutes from './routes/routes_TipoFactura.js'
 import ComprasRoutes from './routes/routes_Compra.js'
 import BodegaRoutes from './routes/routes_Bodega.js'
 
+
+
 const app = express()
 
 app.use(cors())

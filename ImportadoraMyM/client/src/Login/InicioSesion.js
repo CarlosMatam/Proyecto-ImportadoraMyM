@@ -5,7 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBContainer } from 'cdbreact';
 import '../CSS/Login.css'
-import Sidebar from '../Components/Sidebar';
+import fondo from '../FondoLogin.jpg';
+
 
 const URI = 'http://localhost:8000/Login/';
 
@@ -40,7 +41,7 @@ const Login = () => {
 
     return (
         
-        <Formik
+        <Formik 
             initialValues={{
                 LOGIN_USER: '',
                 CONTRASENNA: '',
@@ -48,16 +49,26 @@ const Login = () => {
             validationSchema={Validaciones}
             onSubmit={store}
         >
-            <div style={{ display: 'flex' }}>
-                {/* Coloca el Sidebar a la izquierda */}
-                <Sidebar />
+            <div style={{
+                position: 'absolute',
+                width: '100%',
+                height: '100vh',
+                backgroundImage: 'url(' + fondo + ')',
 
-            <Form>
+            }} > 
+                
+            <div  style={{
+                contentAlign: 'center', alignItems: 'center',
+                    justifyContent: 'center', display: 'flex',
+                 margin: '100px',
+               
+            }}> 
+                    <Form style={{ border: '1px solid gray', padding: '20px', margin: '20px', borderRadius: '10px', background: 'white' }}>
                 <CDBContainer>
                 <CDBCard style={{ width: '30rem' }}>
                 <CDBCardBody className="mx-4">
                     <div>
-                        <h3 className="h3">Iniciar Sesión</h3>
+                                    <h4 style={{ textAlign: 'center' }} className="h3">Iniciar Sesión</h4>
                     </div>
                 <div className="mb-3">
                     <label className="form-label">Usuario:</label>
@@ -93,19 +104,28 @@ const Login = () => {
                     />
                 </div>
                <div>
-               <Link to="/Login/OlvidoContrasenna" className='d-inline p-0'>¿Olvidó su contraseña?</Link>
+              
                </div>
                 {/* Mostrar el mensaje de error */}
-                <p className="text-danger">{errorMessage}</p>
+                                <p className="text-danger">{errorMessage}</p>
+                                
+                                <div style={{
+                                    contentAlign: 'center', alignItems: 'center',
+                                    justifyContent: 'center', display: 'flex'
+                                }}>
                
-                <CDBBtn type="submit" className="btn btn-primary">
+                                    <CDBBtn style={{ margin: '10px'}}  type="submit" className="btn btn-primary">
                     Iniciar Sesión
-                </CDBBtn>
+                                    </CDBBtn>
+                                    
+                                </div>
                 </CDBCardBody>
-                </CDBCard>
+                        </CDBCard>
+                        
                 </CDBContainer>
                 </Form>
                 </div>
+            </div>
         </Formik>
     );
 };
